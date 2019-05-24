@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyNews</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="top_stories_tab_name">Top stories</string>
+    <string name="most_popular_tab_name">Most popular</string>
+    <string name="arts_tab_name">Arts</string>
 </resources>
