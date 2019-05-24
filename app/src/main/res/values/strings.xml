@@ -8,4 +8,7 @@
     <string name="top_stories_content">Top stories content will be displayed here</string>
     <string name="most_popular_content">Most popular content will be displayed here</string>
     <string name="arts_content">Arts content will be displayed here</string>
+
+    <string name="search_button">Search</string>
+    <string name="settings_button">Settings</string>
 </resources>
