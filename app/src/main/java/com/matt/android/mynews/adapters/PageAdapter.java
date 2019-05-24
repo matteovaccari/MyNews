@@ -1,5 +1,6 @@
 package com.matt.android.mynews.adapters;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,9 +13,12 @@ import com.matt.android.mynews.controllers.fragments.TopStoriesFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
 
+    Context ctx;
+
     //Constructor
-    public PageAdapter(FragmentManager mgr) {
+    public PageAdapter(FragmentManager mgr, Context ctx) {
         super(mgr);
+        this.ctx = ctx;
     }
 
     //Method who return a Fragment depending of ViewPager's position
@@ -41,15 +45,15 @@ public class PageAdapter extends FragmentPagerAdapter {
     //Method who return each tab title name
     @Nullable
     @Override
-    public CharSequence getPageTitle(int position) {
-        CharSequence cs;
+    public String getPageTitle(int position) {
+
         switch (position) {
             case 0:
-                return cs = String.valueOf(R.string.top_stories_tab_name);
+                return ctx.getString(R.string.top_stories_tab_name);
             case 1:
-                return cs = String.valueOf(R.string.most_popular_tab_name);
+                return ctx.getString(R.string.most_popular_tab_name);
             case 2:
-                return cs = String.valueOf(R.string.arts_tab_name);
+                return ctx.getString(R.string.arts_tab_name);
             default:
                 return null;
         }
