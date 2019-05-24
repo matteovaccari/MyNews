@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.PageAdapter;
@@ -21,13 +23,28 @@ public class MainActivity extends AppCompatActivity {
         this.configureViewPagerAndTabs();
     }
 
+    //Inflate and add the menu (icons-button) to the toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Add the menu (icons-button) to the toolbar
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
 
+    //Actions to do depending of which icon (search, settings) is selected
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.search_button_main_activity:
+                Toast.makeText(this, "This will launch search feature", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.settings_button_main_activity:
+                Toast.makeText(this, "This will launch settings feature", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //Get and set the toolbar
     private void configureToolBar() {
         //Get the toolbar from MainActivity's layout
         Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
@@ -35,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    //Get and configure the ViewPager
     private void configureViewPagerAndTabs() {
         //Get ViewPager
         ViewPager pager = (ViewPager) findViewById(R.id.view_pager_main_activity);
