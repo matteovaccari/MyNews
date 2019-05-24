@@ -15,8 +15,8 @@ import com.matt.android.mynews.R;
 public class TopStoriesFragment extends Fragment {
 
 
-    public TopStoriesFragment() {
-        // Required empty public constructor
+    public static TopStoriesFragment newInstance() {
+        return (new TopStoriesFragment());
     }
 
 

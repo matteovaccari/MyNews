@@ -15,8 +15,8 @@ import com.matt.android.mynews.R;
 public class ArtsFragment extends Fragment {
 
 
-    public ArtsFragment() {
-        // Required empty public constructor
+    public static ArtsFragment newInstance() {
+        return (new ArtsFragment());
     }
 
 

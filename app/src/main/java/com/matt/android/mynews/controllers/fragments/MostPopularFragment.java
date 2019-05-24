@@ -15,8 +15,8 @@ import com.matt.android.mynews.R;
 public class MostPopularFragment extends Fragment {
 
 
-    public MostPopularFragment() {
-        // Required empty public constructor
+    public static MostPopularFragment newInstance() {
+        return (new MostPopularFragment());
     }
 
 
