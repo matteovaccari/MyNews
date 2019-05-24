@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top_stories_fragment_rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.fragments.TopStoriesFragment">
+    tools:context=".controllers.fragments.TopStoriesFragment"
+    android:gravity="center"
+    android:background="#EDD9CF">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/top_stories_fragment_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dip"
+        android:text="@string/top_stories_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:textAlignment="center"/>
 
-</FrameLayout>
+</LinearLayout>
