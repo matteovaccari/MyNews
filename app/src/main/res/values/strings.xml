@@ -5,10 +5,21 @@
     <string name="most_popular_tab_name">Most popular</string>
     <string name="arts_tab_name">Arts</string>
 
+    <!-- Each tab content -->
     <string name="top_stories_content">Top stories content will be displayed here</string>
     <string name="most_popular_content">Most popular content will be displayed here</string>
     <string name="arts_content">Arts content will be displayed here</string>
 
+    <!-- Tab buttons names -->
     <string name="search_button">Search</string>
     <string name="settings_button">Settings</string>
+
+    <!-- Used in NavigationDrawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_option_1">Option 1</string>
+    <string name="menu_option_2">Option 2</string>
+    <string name="menu_option_3">Option 3</string>
+    <string name="menu_tab_name">Menu tab name</string>
 </resources>
+
