@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/main_activity_drawer_option1"
+            android:icon="@drawable/menu_option_1_button"
+            android:title="@string/menu_option_1" />
+    </group>
+
+    <item android:title="@string/menu_tab_name">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/main_activity_option2"
+                    android:icon="@drawable/menu_option_2_button"
+                    android:title="@string/menu_option_2" />
+                <item
+                    android:id="@+id/main_activity_option3"
+                    android:icon="@drawable/menu_option_3_button"
+                    android:title="@string/menu_option_3" />
+            </group>
+        </menu>
+    </item>
+</menu>
