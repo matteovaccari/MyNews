@@ -23,10 +23,6 @@
             android:minHeight="?attr/actionBarSize"
             app:titleTextColor="@android:color/white" />
 
-        <FrameLayout
-            android:id="@+id/main_activity_frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout_main_activity"
@@ -37,6 +33,11 @@
             app:tabSelectedTextColor="#fff"
             app:tabTextColor="#D4E0F8" />
 
+        <FrameLayout
+            android:id="@+id/main_activity_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
 
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager_main_activity"
@@ -44,6 +45,7 @@
             android:layout_height="match_parent" />
 
 
+        </FrameLayout>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
