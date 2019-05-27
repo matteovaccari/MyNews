@@ -5,7 +5,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/main_activity_drawer_option1"
+            android:id="@+id/main_activity_menu_option1"
             android:icon="@drawable/menu_option_1_button"
             android:title="@string/menu_option_1" />
     </group>
@@ -14,11 +14,11 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/main_activity_option2"
+                    android:id="@+id/main_activity_menu_option2"
                     android:icon="@drawable/menu_option_2_button"
                     android:title="@string/menu_option_2" />
                 <item
-                    android:id="@+id/main_activity_option3"
+                    android:id="@+id/main_activity_menu_option3"
                     android:icon="@drawable/menu_option_3_button"
                     android:title="@string/menu_option_3" />
             </group>
