@@ -17,9 +17,12 @@
     <!-- Used in NavigationDrawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="menu_option_1">Option 1</string>
-    <string name="menu_option_2">Option 2</string>
-    <string name="menu_option_3">Option 3</string>
-    <string name="menu_tab_name">Menu tab name</string>
+    <string name="menu_option_1">Top Stories</string>
+    <string name="menu_option_2">Most Popular</string>
+    <string name="menu_option_3">Arts</string>
+    <string name="menu_option_4">Search</string>
+    <string name="menu_option_5">Notifications</string>
+    <string name="menu_tab_name">Find an article</string>
+
 </resources>
 
