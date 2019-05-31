@@ -3,6 +3,7 @@ package com.matt.android.mynews.controllers.activities;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,12 +17,18 @@ import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.PageAdapter;
+import com.matt.android.mynews.controllers.fragments.MostPopularFragment;
+import com.matt.android.mynews.controllers.fragments.TopStoriesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private Fragment topStoriesFragment;
+    private Fragment mostPopularFragment;
+    private Fragment artsFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +74,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.main_activity_menu_option1:
-                Toast.makeText(this, "Option 1", Toast.LENGTH_SHORT).show();
+            case R.id.main_activity_menu_top_stories:
+                this.showRelatedFragment(0); //Work in progress
                 break;
-            case R.id.main_activity_menu_option2:
-                Toast.makeText(this, "Option 2", Toast.LENGTH_SHORT).show();
+            case R.id.main_activity_menu_most_popular:
+                this.showRelatedFragment(1);
                 break;
-            case R.id.main_activity_menu_option3:
+            case R.id.main_activity_menu_arts:
                 Toast.makeText(this, "Option 3", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_activity_menu_search:
+                Toast.makeText(this, "Option 4", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_activity_menu_notifications:
+                Toast.makeText(this, "Option 5", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -95,14 +108,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Get and configure the ViewPager
     private void configureViewPagerAndTabs() {
         //Get ViewPager
-        ViewPager pager = (ViewPager) findViewById(R.id.view_pager_main_activity);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_main_activity);
         //Link it to adapter
-        pager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
 
         //Get TabLayout
         TabLayout tabs = (TabLayout) findViewById(R.id.tab_layout_main_activity);
         //Link it to viewpager
-        tabs.setupWithViewPager(pager);
+        tabs.setupWithViewPager(viewPager);
         //Tabs have the same width
         tabs.setTabMode(TabLayout.MODE_FIXED);
     }
@@ -124,5 +137,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureViewPagerAndTabs();
         this.configureDrawerLayout();
         this.configureNavigationView();
+    }
+
+    //two methods below are not definitives
+    public void showRelatedFragment(int position) {
+        switch (position) {
+            case 0:
+                this.topStoriesFragment = TopStoriesFragment.newInstance();
+                startTransactionFragment(topStoriesFragment);
+            case 1:
+                startTransactionFragment(MostPopularFragment.newInstance());
+            default:
+
+
+        }
+    }
+
+    private void startTransactionFragment(Fragment fragment) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_activity_frame_layout, fragment).commit();
+
     }
 }
