@@ -25,9 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private Fragment topStoriesFragment;
-    private Fragment mostPopularFragment;
-    private Fragment artsFragment;
+    private ViewPager viewPager;
 
 
     @Override
@@ -75,19 +73,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id) {
             case R.id.main_activity_menu_top_stories:
-                this.showRelatedFragment(0); //Work in progress
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.main_activity_menu_most_popular:
-                this.showRelatedFragment(1);
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.main_activity_menu_arts:
-                Toast.makeText(this, "Option 3", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(2);
                 break;
             case R.id.main_activity_menu_search:
-                Toast.makeText(this, "Option 4", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Search option", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_activity_menu_notifications:
-                Toast.makeText(this, "Option 5", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Params notifications", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //Get and configure the ViewPager
     private void configureViewPagerAndTabs() {
         //Get ViewPager
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_main_activity);
+        viewPager = (ViewPager) findViewById(R.id.view_pager_main_activity);
         //Link it to adapter
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
 
@@ -137,25 +135,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureViewPagerAndTabs();
         this.configureDrawerLayout();
         this.configureNavigationView();
-    }
-
-    //two methods below are not definitives
-    public void showRelatedFragment(int position) {
-        switch (position) {
-            case 0:
-                this.topStoriesFragment = TopStoriesFragment.newInstance();
-                startTransactionFragment(topStoriesFragment);
-            case 1:
-                startTransactionFragment(MostPopularFragment.newInstance());
-            default:
-
-
-        }
-    }
-
-    private void startTransactionFragment(Fragment fragment) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_activity_frame_layout, fragment).commit();
-
     }
 }
