@@ -20,6 +20,8 @@ import com.matt.android.mynews.adapters.PageAdapter;
 import com.matt.android.mynews.controllers.fragments.MostPopularFragment;
 import com.matt.android.mynews.controllers.fragments.TopStoriesFragment;
 
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Butterknife init
+        ButterKnife.bind(this);
 
         this.configureDisplay();
     }
