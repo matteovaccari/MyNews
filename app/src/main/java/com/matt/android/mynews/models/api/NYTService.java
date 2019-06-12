@@ -1,4 +1,4 @@
-package com.matt.android.mynews.models;
+package com.matt.android.mynews.models.api;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
