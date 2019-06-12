@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.matt.android.mynews.R;
-import com.matt.android.mynews.models.Result;
+import com.matt.android.mynews.models.api.Result;
 
 import java.util.List;
 
