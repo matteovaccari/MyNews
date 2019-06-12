@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- TOOLBAR THEME -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!-- Color of the title text in the Toolbar -->
+        <item name="android:textColorPrimary">@color/colorTitle</item>
+        <item name="colorControlNormal">@color/colorTitle</item>
+    </style>
+
+    <!-- TOOLBAR TITLE THEME -->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>
