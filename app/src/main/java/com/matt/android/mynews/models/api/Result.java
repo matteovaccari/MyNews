@@ -26,16 +26,16 @@ public class Result {
     private Object column;
     @SerializedName("eta_id")
     @Expose
-    private Integer etaId;
+    private Long etaId;
     @SerializedName("section")
     @Expose
     private String section;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private Long id;
     @SerializedName("asset_id")
     @Expose
-    private Integer assetId;
+    private Long assetId;
     @SerializedName("nytdsection")
     @Expose
     private String nytdsection;
@@ -58,21 +58,6 @@ public class Result {
     @Expose
     private String source;
     @SerializedName("updated")
-    @Expose
-    private String updated;
-    @SerializedName("des_facet")
-    @Expose
-    private List<String> desFacet = null;
-    @SerializedName("org_facet")
-    @Expose
-    private String orgFacet;
-    @SerializedName("per_facet")
-    @Expose
-    private String perFacet;
-    @SerializedName("geo_facet")
-    @Expose
-    private String geoFacet;
-    @SerializedName("media")
     @Expose
     private List<Medium> media = null;
     @SerializedName("uri")
@@ -127,11 +112,11 @@ public class Result {
         this.column = column;
     }
 
-    public Integer getEtaId() {
+    public Long getEtaId() {
         return etaId;
     }
 
-    public void setEtaId(Integer etaId) {
+    public void setEtaId(Long etaId) {
         this.etaId = etaId;
     }
 
@@ -143,19 +128,19 @@ public class Result {
         this.section = section;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getAssetId() {
+    public Long getAssetId() {
         return assetId;
     }
 
-    public void setAssetId(Integer assetId) {
+    public void setAssetId(Long assetId) {
         this.assetId = assetId;
     }
 
@@ -213,46 +198,6 @@ public class Result {
 
     public void setSource(String source) {
         this.source = source;
-    }
-
-    public String getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(String updated) {
-        this.updated = updated;
-    }
-
-    public List<String> getDesFacet() {
-        return desFacet;
-    }
-
-    public void setDesFacet(List<String> desFacet) {
-        this.desFacet = desFacet;
-    }
-
-    public String getOrgFacet() {
-        return orgFacet;
-    }
-
-    public void setOrgFacet(String orgFacet) {
-        this.orgFacet = orgFacet;
-    }
-
-    public String getPerFacet() {
-        return perFacet;
-    }
-
-    public void setPerFacet(String perFacet) {
-        this.perFacet = perFacet;
-    }
-
-    public String getGeoFacet() {
-        return geoFacet;
-    }
-
-    public void setGeoFacet(String geoFacet) {
-        this.geoFacet = geoFacet;
     }
 
     public List<Medium> getMedia() {
