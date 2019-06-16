@@ -41,10 +41,10 @@ public abstract class BaseFragment extends Fragment {
     //---FOR DESIGN---
 
     //Declare the recycler view
-    @BindView(R.id.most_popular_fragment_recyclerView)
+    @BindView(R.id.main_fragment_recyclerView)
     RecyclerView recyclerView;
     //Declare the SwipeRefreshLayout
-    @BindView(R.id.most_popular_fragment_swipe_refresh)
+    @BindView(R.id.main_fragment_swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
 
     //---FOR DATA---
