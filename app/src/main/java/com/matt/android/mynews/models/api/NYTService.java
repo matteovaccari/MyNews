@@ -20,4 +20,13 @@ public interface NYTService {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
+
+    @GET("{section}.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm")
+            Observable<MainDataObservable> getNyTopStories(@Path("section") String section);
+
+    Retrofit retrofitTopStories = new Retrofit.Builder()
+            .baseUrl("https://api.nytimes.com/svc/topstories/v2/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build();
 }
