@@ -18,4 +18,13 @@ public class NYTStreams {
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
     }
+
+    public static Observable<MainDataObservable> streamFetchTopStories(String section) {
+        NYTService nytService = NYTService.retrofitTopStories.create(NYTService.class);
+        return nytService.getNyTopStories(section)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+
+    }
 }
