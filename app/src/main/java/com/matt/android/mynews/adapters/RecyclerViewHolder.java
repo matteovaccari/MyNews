@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.api.Result;
 import com.matt.android.mynews.models.utils.UpdateTextItems;
@@ -36,7 +38,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void updateWithArticle(final Result article) {
+    public void updateWithArticle(final Result article, RequestManager glide) {
         UpdateTextItems update = new UpdateTextItems();
         // set Section
         this.textViewSection.setText(update.setSection(article));
@@ -46,5 +48,42 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         this.textViewTitle.setText(update.setTitle(article));
         // set Date
         this.textViewDate.setText(update.setDate(article));
+        //set image
+        this.setArticleImage(article, glide);
+    }
+
+    public void setArticleImage(Result article, RequestManager glide) {
+        // if image is from Multimedia model
+        if (article.getMultimedia() != null) {
+            // and if image is from Multimedia model
+            if (article.getMultimedia().size() > 0) {
+                // get image string
+                String mUrlMultimedia = article.getMultimedia().get(0).getUrl();
+                // clean the URL
+                if (mUrlMultimedia.startsWith("images")) {
+                    mUrlMultimedia = "https://www.nytimes.com/" + mUrlMultimedia;
+                }
+                glide.load(mUrlMultimedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
+            } else {
+                // default image
+                getImageDefault(glide);
+            }
+        } else {
+            // if image is from Media model
+            if (article.getMedia().size() > 0) {
+                // get Url
+                String mUrlMedia = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+                // glide the string
+                glide.load(mUrlMedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
+            } else {
+                //get image default
+                getImageDefault(glide);
+            }
+        }
+    }
+
+    private void getImageDefault(RequestManager glide) {
+        glide.clear(imageView);
+        imageView.setImageResource(R.drawable.ic_image_default);
     }
 }
