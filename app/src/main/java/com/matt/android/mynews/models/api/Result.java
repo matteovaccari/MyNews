@@ -63,6 +63,9 @@ public class Result {
     @SerializedName("uri")
     @Expose
     private String uri;
+    @Expose
+    private List<Multimedium> multimedia = null;
+    @SerializedName("media")
 
     public String getUrl() {
         return url;
@@ -214,6 +217,10 @@ public class Result {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public List<Multimedium> getMultimedia() {
+        return multimedia;
     }
 
 }
