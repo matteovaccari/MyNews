@@ -7,24 +7,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.RequestManager;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.api.Result;
 
 import java.util.List;
 
+/**
+ * RecyclerView adapter
+ */
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
+    //Article list
     private List<Result> articlesList;
+    //Image
+    private RequestManager glide;
 
     //Constructor
-    public RecyclerViewAdapter(List <Result> articlesList) {
+    public RecyclerViewAdapter(List<Result> articlesList, RequestManager glide) {
         this.articlesList = articlesList;
+        this.glide = glide;
     }
 
+    /**
+     * Create viewHolder and inflating its layout
+     *
+     * @param parent Parent Activity
+     * @param viewType view
+     * @return viewHolder(view)
+     */
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //Create viewHolder and inflating its xml layout
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.most_popular_item, parent, false);
@@ -32,13 +47,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         return new RecyclerViewHolder(view);
     }
 
-    //Update view holder with a githubUser
+    /**
+     * Update with an article
+     *
+     * @param viewHolder article view holder
+     * @param position   position in article list
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder viewHolder, int position) {
-        viewHolder.updateWithArticle(this.articlesList.get(position));
+        viewHolder.updateWithArticle(this.articlesList.get(position), this.glide);
     }
 
-    //Return the total count of items in the list
+    /**
+     * Return the size of article list
+     *
+     * @return article list size
+     */
     @Override
     public int getItemCount() {
         return this.articlesList.size();
