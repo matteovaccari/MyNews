@@ -82,7 +82,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             }
         } else {
 
-            if (article.getMedia().size() == 0) {
+            if (article.getMedia() == null) {
                 //image default
                 getImageDefault(glide);
             } else {
