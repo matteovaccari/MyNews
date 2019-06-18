@@ -3,7 +3,6 @@ package com.matt.android.mynews.controllers.activities;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,8 +16,6 @@ import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.PageAdapter;
-import com.matt.android.mynews.controllers.fragments.MostPopularFragment;
-import com.matt.android.mynews.controllers.fragments.TopStoriesFragment;
 
 import butterknife.ButterKnife;
 
@@ -35,20 +32,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Butterknife init
+        //ButterKnife init
         ButterKnife.bind(this);
 
+        //Configure display
         this.configureDisplay();
     }
 
-    //Inflate and add the menu (icons-button) to the toolbar
+    /**
+     * Inflate and add the menu (buttons) to the toolbar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
 
-    //Actions to do depending of which icon (search, settings) is selected
+    /**
+     * Actions to do depending of which button (search, settings) is selected in the home page (toolbar)
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_button_main_activity:
@@ -62,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    //Allow phone back button to return to default MainActivity home page
+    /**
+     * Allow phone back button to return to default MainActivity home page
+     */
     @Override
     public void onBackPressed() {
         if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -72,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * Method who update display depending of which button user clicked in NavigationView (drop down menu)
+     *
+     * @param item tab (fragment) or search / notification button
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -100,7 +109,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    //Get and set the toolbar
+    /**
+     * Get and set toolbar
+     */
     private void configureToolBar() {
         //Get the toolbar from MainActivity's layout
         this.toolbar = findViewById(R.id.toolbar_main_activity);
@@ -108,7 +119,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
     }
 
-    //Get and configure the ViewPager
+    /**
+     * Get and configure ViewPager and tabs
+     */
     private void configureViewPagerAndTabs() {
         //Get ViewPager
         viewPager = (ViewPager) findViewById(R.id.view_pager_main_activity);
@@ -123,6 +136,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabs.setTabMode(TabLayout.MODE_FIXED);
     }
 
+    /**
+     * Method who link DrawerLayout
+     */
     private void configureDrawerLayout() {
         this.drawerLayout = (DrawerLayout) findViewById(R.id.main_activity_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -130,11 +146,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
     }
 
+    /**
+     * Method who link navigation-view (drop-down menu) and add listeners to each element
+     */
     private void configureNavigationView() {
         this.navigationView = (NavigationView) findViewById(R.id.main_activity_navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
+    /**
+     * Method that unify all UI related management and is called in OnCreate method
+     */
     private void configureDisplay() {
         this.configureToolBar();
         this.configureViewPagerAndTabs();

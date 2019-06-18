@@ -1,4 +1,4 @@
-package com.matt.android.mynews.controllers.fragments;
+package com.matt.android.mynews.controllers.fragments.tabs;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.api.MainDataObservable;

@@ -1,12 +1,7 @@
-package com.matt.android.mynews.controllers.fragments;
+package com.matt.android.mynews.controllers.fragments.tabs;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.api.MainDataObservable;

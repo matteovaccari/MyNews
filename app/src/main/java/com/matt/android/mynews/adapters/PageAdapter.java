@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.matt.android.mynews.R;
-import com.matt.android.mynews.controllers.fragments.ArtsFragment;
-import com.matt.android.mynews.controllers.fragments.MostPopularFragment;
-import com.matt.android.mynews.controllers.fragments.TopStoriesFragment;
+import com.matt.android.mynews.controllers.fragments.tabs.ArtsFragment;
+import com.matt.android.mynews.controllers.fragments.tabs.MostPopularFragment;
+import com.matt.android.mynews.controllers.fragments.tabs.TopStoriesFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
 
@@ -21,7 +21,9 @@ public class PageAdapter extends FragmentPagerAdapter {
         this.ctx = ctx;
     }
 
-    //Method who return a Fragment depending of ViewPager's position
+    /**
+     * Method who return a Fragment depending of ViewPager's position
+     */
     @Override
     public Fragment getItem(int position) {
         switch (position) {
@@ -36,13 +38,22 @@ public class PageAdapter extends FragmentPagerAdapter {
         }
     }
 
-    //Method who return the number of tabs
+    /**
+     * Method who return the number of tabs
+     *
+     * @return number of tabs
+     */
     @Override
     public int getCount() {
         return 3;
     }
 
-    //Method who return each tab title name
+    /**
+     * Method who return each tab title name
+     *
+     * @param position position of viewPager
+     * @return Tab name
+     */
     @Nullable
     @Override
     public String getPageTitle(int position) {

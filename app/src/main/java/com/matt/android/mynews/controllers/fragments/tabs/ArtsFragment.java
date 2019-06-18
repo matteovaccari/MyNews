@@ -1,12 +1,7 @@
-package com.matt.android.mynews.controllers.fragments;
+package com.matt.android.mynews.controllers.fragments.tabs;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.api.MainDataObservable;
@@ -17,7 +12,9 @@ import io.reactivex.observers.DisposableObserver;
 
 public class ArtsFragment extends BaseFragment {
 
-    /** Method called by ViewPager for each fragment instance
+    /**
+     * Method called by ViewPager for each fragment instance
+     *
      * @return new Fragment instance
      */
     public static ArtsFragment newInstance() {
@@ -26,6 +23,7 @@ public class ArtsFragment extends BaseFragment {
 
     /**
      * Method called in OnCreateView BaseFragment (parent class)
+     *
      * @return fragment layout
      */
     @Override
@@ -39,7 +37,7 @@ public class ArtsFragment extends BaseFragment {
      */
     @Override
     protected void executeHttpRequest() {
-        this.disposable = NYTStreams.streamFetchTopStories("arts").subscribeWith(new DisposableObserver<MainDataObservable>(){
+        this.disposable = NYTStreams.streamFetchTopStories("arts").subscribeWith(new DisposableObserver<MainDataObservable>() {
             @Override
             public void onNext(MainDataObservable articles) {
                 updateUI(articles.getResults());

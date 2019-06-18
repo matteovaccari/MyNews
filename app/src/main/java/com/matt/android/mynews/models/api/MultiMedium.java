@@ -1,16 +1,21 @@
 package com.matt.android.mynews.models.api;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Multimedium {
+/**
+ * Class for image management (url > getUrl > article.getMultimedia) for getting article image resource
+ */
 
-        @SerializedName("url")
-        @Expose
-        private String url;
+public class MultiMedium {
 
-        public String getUrl() {
-            return url;
-        }
+    @SerializedName("url")
+    @Expose
+    private String url;
 
+    public String getUrl() {
+        return url;
     }
+
+}
 

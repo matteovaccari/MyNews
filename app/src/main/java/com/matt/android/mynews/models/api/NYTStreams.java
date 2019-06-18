@@ -7,7 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Create a stream with observable
+ * Create streams with observable
  */
 public class NYTStreams {
 

@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * NYT API request and retrofit build
+ * NYT API requests and retrofit builds
  */
 public interface NYTService {
 
@@ -22,7 +22,7 @@ public interface NYTService {
             .build();
 
     @GET("{section}.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm")
-            Observable<MainDataObservable> getNyTopStories(@Path("section") String section);
+    Observable<MainDataObservable> getNyTopStories(@Path("section") String section);
 
     Retrofit retrofitTopStories = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/svc/topstories/v2/")

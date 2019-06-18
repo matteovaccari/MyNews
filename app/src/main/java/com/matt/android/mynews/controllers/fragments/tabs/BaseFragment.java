@@ -1,4 +1,4 @@
-package com.matt.android.mynews.controllers.fragments;
+package com.matt.android.mynews.controllers.fragments.tabs;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.RecyclerViewAdapter;
 import com.matt.android.mynews.models.api.Result;
@@ -82,7 +83,7 @@ public abstract class BaseFragment extends Fragment {
      */
     private void configureRecyclerView() {
         this.resultList = new ArrayList<>();
-        adapter = new RecyclerViewAdapter(resultList);
+        adapter = new RecyclerViewAdapter(resultList, Glide.with(this));
         this.recyclerView.setAdapter(adapter);
         //Re-organize LayoutManager for item positions
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

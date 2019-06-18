@@ -12,57 +12,78 @@ import java.util.Date;
  */
 public class UpdateTextItems {
 
-        private String text;
+    private String text;
 
-        //Constructor
-        public UpdateTextItems() { }
+    //Constructor
+    public UpdateTextItems() {
+    }
 
-        /**
-         * set article section
-         * @param article Article text Section
-         * @return String article text
-         */
-        public String setSection(Result article) {
-            if (!article.getSection().equals("")) {
-                text = article.getSection();
-            }
-            return text;
+    /**
+     * set article section
+     *
+     * @param article Section name
+     * @return String article
+     */
+
+    public String setSection(Result article) {
+        if (!article.getSection().equals("")) {
+            text = article.getSection();
         }
+        return text;
+    }
 
+    /**
+     * set article subSection (example : "Arts > Television")
+     *
+     * @param article
+     * @return String article subsection
+     */
 
-        public String setSubSection(Result article) {
-            String sectionTitle = article.getSection();
-            text = "";
-            if (article.getSubsection() != null) {
-                String subsectionTitle = article.getSubsection();
-                if (!article.getSubsection().equals("") && subsectionTitle.compareTo(sectionTitle) != 0) {
-                    text = " > " + article.getSubsection();
-                }
-
+    public String setSubSection(Result article) {
+        String sectionTitle = article.getSection();
+        text = "";
+        if (article.getSubsection() != null) {
+            String subsectionTitle = article.getSubsection();
+            if (!article.getSubsection().equals("") && subsectionTitle.compareTo(sectionTitle) != 0) {
+                text = " > " + article.getSubsection();
             }
-            return text;
+
         }
+        return text;
+    }
 
+    /**
+     * set Title
+     *
+     * @param article Set Title
+     * @return title
+     */
 
-        public String setTitle(Result article) {
-            if (!article.getTitle().equals("")) {
-                text = article.getTitle();
-            }
-            return text;
+    public String setTitle(Result article) {
+        if (!article.getTitle().equals("")) {
+            text = article.getTitle();
         }
+        return text;
+    }
 
-        public String setDate(Result article){
-            try {
-                String dateStr= article.getPublishedDate();
-                DateFormat srcDf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = srcDf.parse(dateStr);
-                DateFormat destDF = new SimpleDateFormat("dd/MM/yy");
-                dateStr = destDF.format(date);
-                text = dateStr;
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return text;
+    /**
+     * Set date
+     *
+     * @param article
+     * @return article Date with right date format
+     */
+
+    public String setDate(Result article) {
+        try {
+            String dateStr = article.getPublishedDate();
+            DateFormat srcDf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = srcDf.parse(dateStr);
+            DateFormat destDF = new SimpleDateFormat("dd/MM/yy");
+            dateStr = destDF.format(date);
+            text = dateStr;
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-
+        return text;
+    }
 }

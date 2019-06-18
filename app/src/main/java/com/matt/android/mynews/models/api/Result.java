@@ -1,8 +1,13 @@
 package com.matt.android.mynews.models.api;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+/**
+ * Class to manage api content getters and setters
+ */
 
 public class Result {
 
@@ -64,7 +69,8 @@ public class Result {
     @Expose
     private String uri;
     @Expose
-    private List<Multimedium> multimedia = null;
+    private List<MultiMedium> multimedia = null;
+
     @SerializedName("media")
 
     public String getUrl() {
@@ -219,7 +225,7 @@ public class Result {
         this.uri = uri;
     }
 
-    public List<Multimedium> getMultimedia() {
+    public List<MultiMedium> getMultimedia() {
         return multimedia;
     }
 
