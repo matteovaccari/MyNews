@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.api.Result;
 import com.matt.android.mynews.models.utils.UpdateTextItems;
+import com.matt.android.mynews.models.api.MultiMedium;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,12 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+    /**
+     * Update article list with items
+     *
+     * @param article article
+     * @param glide   image
+     */
     public void updateWithArticle(final Result article, RequestManager glide) {
         UpdateTextItems update = new UpdateTextItems();
         // set Section
@@ -52,10 +59,15 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         this.setArticleImage(article, glide);
     }
 
+    /**
+     * Image manager, take url of image + an article
+     *
+     * @param article article
+     * @param glide   image
+     */
     public void setArticleImage(Result article, RequestManager glide) {
-        // if image is from Multimedia model
+        //If article url isn't null
         if (article.getMultimedia() != null) {
-            // and if image is from Multimedia model
             if (article.getMultimedia().size() > 0) {
                 // get image string
                 String mUrlMultimedia = article.getMultimedia().get(0).getUrl();
@@ -69,19 +81,24 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                 getImageDefault(glide);
             }
         } else {
-            // if image is from Media model
-            if (article.getMedia().size() > 0) {
+
+            if (article.getMedia().size() == 0) {
+                //image default
+                getImageDefault(glide);
+            } else {
                 // get Url
                 String mUrlMedia = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
                 // glide the string
                 glide.load(mUrlMedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
-            } else {
-                //get image default
-                getImageDefault(glide);
             }
         }
     }
 
+    /**
+     * Set default image when resource is missing
+     *
+     * @param glide image
+     */
     private void getImageDefault(RequestManager glide) {
         glide.clear(imageView);
         imageView.setImageResource(R.drawable.ic_image_default);
