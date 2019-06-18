@@ -26,11 +26,11 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 
 /**
- * Class to manage fragments
+ * Parent class for Fragments, containing all shared methods for all tabs
  */
 public abstract class BaseFragment extends Fragment {
 
-    //For each Fragment, will return ID
+    //For each Fragment, will return layout ID
     protected abstract int getFragmentLayout();
 
     //For connecting to the NyTimes API
@@ -60,14 +60,14 @@ public abstract class BaseFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate view
         View view = inflater.inflate(getFragmentLayout(), container, false);
-        //Init Butterknife
+        //Init ButterKnife
         ButterKnife.bind(this, view);
         this.configureRequestsAndUI();
         return view;
     }
 
     /**
-     * When the fragment is distroy
+     * Called when fragment is destroy
      */
     @Override
     public void onDestroy() {
@@ -88,6 +88,9 @@ public abstract class BaseFragment extends Fragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    /**
+     * Method used for using SwipeRefreshLayout (refresh article list when swiping)
+     */
     private void configureSwipeRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -97,6 +100,11 @@ public abstract class BaseFragment extends Fragment {
         });
     }
 
+    /**
+     * At each update, resultList is cleared, sorted, added then NotifyDataSetChanged is called for adapter
+     *
+     * @param textArticle Article list
+     */
     protected void updateUI(List<Result> textArticle) {
         swipeRefreshLayout.setRefreshing(false);
         resultList.clear();
@@ -107,15 +115,28 @@ public abstract class BaseFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    //Sort articles by dates
+    /**
+     * Method who call the 3 methods above and is called in OnCreateView
+     */
+    private void configureRequestsAndUI() {
+        this.configureRecyclerView();
+        this.executeHttpRequest();
+        this.configureSwipeRefreshLayout();
+    }
+
+    /**
+     * Sort article list by Date
+     *
+     * @param textArticle Article list
+     */
     private void sortDateArray(final List<Result> textArticle) {
         for (int i = 0; i < textArticle.size(); i++)
             Collections.sort(textArticle, new Comparator<Result>() {
                 public int compare(Result textArticle1, Result textArticle2) {
-                    String date1 = (String)textArticle1.getPublishedDate();
-                    String date2 = (String)textArticle2.getPublishedDate();
+                    String date1 = (String) textArticle1.getPublishedDate();
+                    String date2 = (String) textArticle2.getPublishedDate();
                     int result = date1.compareTo(date2);
-                    if(result == 0){
+                    if (result == 0) {
                         return date1.compareTo(date2);
                     }
                     return result;
@@ -126,13 +147,10 @@ public abstract class BaseFragment extends Fragment {
             Log.i("List", "List finale" + it.next());
     }
 
-    private void configureRequestsAndUI() {
-        this.configureRecyclerView();
-        this.executeHttpRequest();
-        this.configureSwipeRefreshLayout();
-    }
-
-    private void disposeWhenDestroy(){
+    /**
+     * Method called in OnDestroy method
+     */
+    private void disposeWhenDestroy() {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 }

@@ -17,17 +17,26 @@ import io.reactivex.observers.DisposableObserver;
 
 public class ArtsFragment extends BaseFragment {
 
-
+    /** Method called by ViewPager for each fragment instance
+     * @return new Fragment instance
+     */
     public static ArtsFragment newInstance() {
         return (new ArtsFragment());
     }
 
-
+    /**
+     * Method called in OnCreateView BaseFragment (parent class)
+     * @return fragment layout
+     */
     @Override
     protected int getFragmentLayout() {
         return R.layout.fragment_arts;
     }
 
+    /**
+     * Execute Http Request, using Stream, Observable and Observer - specified section for Arts tab (arts)
+     * OnNext updateUI method take an article List and update it to recyclerView
+     */
     @Override
     protected void executeHttpRequest() {
         this.disposable = NYTStreams.streamFetchTopStories("arts").subscribeWith(new DisposableObserver<MainDataObservable>(){
