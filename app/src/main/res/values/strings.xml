@@ -27,7 +27,7 @@
 
    <!-- Used in Search Fragment -->
 
-    <string name="search_hint_text">Enter keyword or article title</string>
+    <string name="search_hint">Enter keyword or article title</string>
 
 </resources>
 
