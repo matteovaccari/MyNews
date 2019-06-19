@@ -1,5 +1,6 @@
 package com.matt.android.mynews.controllers.activities;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,21 +19,18 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     /**
-     * Inflate the menu and add it to the toolbar
-     * @param menu BackButton
-     * @return true
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_search, menu);
-        return true;
-    }
-
-    /**
      * Get and set toolbar
      */
     private void configureToolBar(){
         Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
+
+        //This is for back button
+        //Get a support Action bar corresponding to above toolbar
+        ActionBar actionBar = getSupportActionBar();
+        //Enable the up button
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }
