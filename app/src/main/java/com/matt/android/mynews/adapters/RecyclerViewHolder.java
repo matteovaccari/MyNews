@@ -80,7 +80,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                 // default image
                 getImageDefault(glide);
             }
-        }/* else {
+        } else {
 
             if (article.getMedia() == null) {
                 //image default
@@ -91,7 +91,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                 // glide the string
                 glide.load(mUrlMedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
             }
-        } */
+        }
     }
 
     /**
