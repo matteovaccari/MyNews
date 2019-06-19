@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_button_main_activity:
-                Toast.makeText(this, "This will launch search feature", Toast.LENGTH_SHORT).show();
+                this.launchSearchActivity();
                 return true;
             case R.id.settings_button_main_activity:
                 Toast.makeText(this, "This will launch settings feature", Toast.LENGTH_SHORT).show();
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.main_activity_menu_search:
-                launchSearchActivity();
+                this.launchSearchActivity();
                 break;
             case R.id.main_activity_menu_notifications:
                 Toast.makeText(this, "Params notifications", Toast.LENGTH_SHORT).show();
