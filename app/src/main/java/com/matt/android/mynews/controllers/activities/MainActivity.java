@@ -1,5 +1,6 @@
 package com.matt.android.mynews.controllers.activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.main_activity_menu_search:
-                Toast.makeText(this, "Search option", Toast.LENGTH_SHORT).show();
+                launchSearchActivity();
                 break;
             case R.id.main_activity_menu_notifications:
                 Toast.makeText(this, "Params notifications", Toast.LENGTH_SHORT).show();
@@ -163,5 +164,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureViewPagerAndTabs();
         this.configureDrawerLayout();
         this.configureNavigationView();
+    }
+
+    private void launchSearchActivity(){
+        Intent searchIntent = new Intent(this, SearchActivity.class);
+        startActivity(searchIntent);
     }
 }
