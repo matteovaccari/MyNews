@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.matt.android.mynews.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment who will contain all search-related options (date,key words, section)
  */
 public class SearchFragment extends Fragment {
 
