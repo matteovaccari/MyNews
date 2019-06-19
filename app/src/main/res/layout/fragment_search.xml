@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".controllers.fragments.search.SearchFragment">
+    tools:context=".controllers.fragments.search.SearchFragment"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_main_activity"
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="@string/search_hint_text"
+        android:hint="@string/search_hint"
         android:inputType="text"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
