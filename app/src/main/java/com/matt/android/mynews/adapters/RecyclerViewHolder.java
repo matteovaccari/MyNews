@@ -70,17 +70,17 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         if (article.getMultimedia() != null) {
             if (article.getMultimedia().size() > 0) {
                 // get image string
-                String mUrlMultimedia = article.getMultimedia().get(0).getUrl();
+                String urlMultimedia = article.getMultimedia().get(0).getUrl();
                 // clean the URL
-                if (mUrlMultimedia.startsWith("images")) {
-                    mUrlMultimedia = "https://www.nytimes.com/" + mUrlMultimedia;
+                if (urlMultimedia.startsWith("images")) {
+                    urlMultimedia = "https://www.nytimes.com/" + urlMultimedia;
                 }
-                glide.load(mUrlMultimedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
+                glide.load(urlMultimedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
             } else {
                 // default image
                 getImageDefault(glide);
             }
-        } else {
+        }/* else {
 
             if (article.getMedia() == null) {
                 //image default
@@ -91,7 +91,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                 // glide the string
                 glide.load(mUrlMedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
             }
-        }
+        } */
     }
 
     /**
