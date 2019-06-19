@@ -25,5 +25,9 @@
     <string name="menu_option_5">Notifications</string>
     <string name="menu_tab_name">Find an article</string>
 
+   <!-- Used in Search Fragment -->
+
+    <string name="search_hint_text">Enter keyword or article title</string>
+
 </resources>
 
