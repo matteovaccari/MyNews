@@ -32,7 +32,7 @@ public class SearchActivity extends AppCompatActivity {
      * Get and set toolbar
      */
     private void configureToolBar(){
-        Toolbar toolbar = findViewById(R.id.search_activity_toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
     }
 }
