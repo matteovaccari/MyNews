@@ -27,7 +27,7 @@
                     android:title="@string/menu_option_4" />
                 <item
                     android:id="@+id/main_activity_menu_notifications"
-                    android:icon="@drawable/menu_option_5_button"
+                    android:icon="@drawable/menu_option_4_button"
                     android:title="@string/menu_option_5" />
             </group>
         </menu>
