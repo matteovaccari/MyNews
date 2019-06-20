@@ -16,7 +16,7 @@
         app:titleTextColor="@android:color/white" />
 
     <!-- Search hint -->
-    
+
     <EditText
         android:id="@+id/search_fragment_edit_text"
         android:layout_width="match_parent"
@@ -42,8 +42,8 @@
         <!-- Begin and end date -->
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -59,6 +59,113 @@
                 android:layout_weight="1"
                 android:textSize="13sp"
                 android:hint="@string/end_date"/>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+    <!-- Date entry fields -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp">
+
+
+        <TextView
+            android:id="@+id/search_fragment_begin_date"
+            android:hint="@string/date_format"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/search_fragment_end_date"
+            android:hint="@string/date_format"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <!-- CheckBoxes for search request -->
+    <LinearLayout
+        android:id="@+id/check_box_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+        android:padding="20dp"
+
+        android:baselineAligned="false">
+
+        <!-- 3 Left checkBoxes -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/search_fragment_arts_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/arts"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_business_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/business"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_entrepreneurs_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/entrepreneurs"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <!-- 3 right CheckBoxes -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/search_fragment_politics_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/politics"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_sports_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/sports"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_travel_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/travel"
+                android:textSize="15sp"/>
 
         </LinearLayout>
 
