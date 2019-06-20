@@ -29,6 +29,13 @@
     <string name="search_hint">Enter keyword or article title</string>
     <string name="begin_date">Begin Date</string>
     <string name="end_date">End Date</string>
+    <string name="date_format" translatable="false">DD/MM/YYYY</string>
+    <string name="arts">Arts</string>
+    <string name="business">Business</string>
+    <string name="entrepreneurs">Entrepreneurs</string>
+    <string name="politics">Politics</string>
+    <string name="sports">Sports</string>
+    <string name="travel">Travel</string>
 
 </resources>
 
