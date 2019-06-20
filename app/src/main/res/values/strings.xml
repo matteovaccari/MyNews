@@ -26,8 +26,9 @@
     <string name="menu_tab_name">Find an article</string>
 
    <!-- Used in Search Fragment -->
-
     <string name="search_hint">Enter keyword or article title</string>
+    <string name="begin_date">Begin Date</string>
+    <string name="end_date">End Date</string>
 
 </resources>
 
