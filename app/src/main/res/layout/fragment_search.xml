@@ -30,4 +30,38 @@
         android:autofillHints="query"
         tools:ignore="UnusedAttribute" />
 
+    <!-- Date management -->
+
+    <LinearLayout
+        android:id="@+id/search_date_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="25dp">
+
+        <!-- Begin and end date -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:hint="@string/begin_date"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:hint="@string/end_date"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>
