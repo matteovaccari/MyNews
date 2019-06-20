@@ -15,7 +15,7 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@android:color/white" />
 
-    <!-- Search entry -->
+    <!-- Search hint -->
     
     <EditText
         android:id="@+id/search_fragment_edit_text"

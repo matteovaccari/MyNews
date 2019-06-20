@@ -25,7 +25,7 @@ public class MostPopularFragment extends BaseFragment {
     }
 
     /**
-     * Execute Http Request, using Stream, Observable and Observer
+     * Execute Http Request, using Stream(Observable and Observer)
      * OnNext updateUI method take an article List and update it to recyclerView
      */
     @Override
