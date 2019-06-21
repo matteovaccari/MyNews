@@ -14,10 +14,10 @@ import com.matt.android.mynews.models.api.Result;
 import java.util.List;
 
 /**
- * RecyclerView adapter
+ * RecyclerView adapter for Top Stories and Arts tab
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class TopStoriesAndArtsAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     //Article list
     private List<Result> articlesList;
@@ -25,7 +25,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     private RequestManager glide;
 
     //Constructor
-    public RecyclerViewAdapter(List<Result> articlesList, RequestManager glide) {
+    public TopStoriesAndArtsAdapter(List<Result> articlesList, RequestManager glide) {
         this.articlesList = articlesList;
         this.glide = glide;
     }
@@ -55,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
      */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder viewHolder, int position) {
-        viewHolder.updateWithArticle(this.articlesList.get(position), this.glide);
+        viewHolder.updateArticleTopStoriesAndArts(this.articlesList.get(position), this.glide);
     }
 
     /**
