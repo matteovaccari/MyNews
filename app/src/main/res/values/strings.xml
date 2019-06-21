@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">MyNews</string>
 
     <string name="top_stories_tab_name">Top stories</string>
@@ -27,7 +27,7 @@
 
    <!-- Used in Search Fragment -->
     <string name="search_hint">Enter keyword or article title</string>
-    <string name="begin_date">Begin Date</string>
+    <string name="begin_date" tools:ignore="ExtraTranslation">Begin Date</string>
     <string name="end_date">End Date</string>
     <string name="date_format" translatable="false">DD/MM/YYYY</string>
     <string name="arts">Arts</string>
