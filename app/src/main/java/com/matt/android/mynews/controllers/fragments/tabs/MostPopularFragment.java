@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.matt.android.mynews.R;
-import com.matt.android.mynews.adapters.MostPopularAdapter;
+import com.matt.android.mynews.adapters.articles.MostPopularAdapter;
 import com.matt.android.mynews.models.api.MainDataObservable;
 import com.matt.android.mynews.models.api.NYTStreams;
 import com.matt.android.mynews.models.api.Result;
