@@ -13,11 +13,7 @@ import com.matt.android.mynews.models.api.Result;
 
 import java.util.List;
 
-/**
- * RecyclerView adapter
- */
-
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class MostPopularAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     //Article list
     private List<Result> articlesList;
@@ -25,7 +21,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     private RequestManager glide;
 
     //Constructor
-    public RecyclerViewAdapter(List<Result> articlesList, RequestManager glide) {
+    public MostPopularAdapter(List<Result> articlesList, RequestManager glide) {
         this.articlesList = articlesList;
         this.glide = glide;
     }
@@ -33,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     /**
      * Create viewHolder and inflating its layout
      *
-     * @param parent Parent Activity
+     * @param parent   Parent Activity
      * @param viewType view
      * @return viewHolder(view)
      */
@@ -42,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.fragment_item, parent, false);
+        View view = inflater.inflate(R.layout.most_popular_item, parent, false);
 
         return new RecyclerViewHolder(view);
     }
@@ -55,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
      */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder viewHolder, int position) {
-        viewHolder.updateWithArticle(this.articlesList.get(position), this.glide);
+        viewHolder.updateArticleMostPopular(this.articlesList.get(position), this.glide);
     }
 
     /**
@@ -68,5 +64,3 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         return this.articlesList.size();
     }
 }
-
-

@@ -2,6 +2,7 @@ package com.matt.android.mynews.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,13 +40,47 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
+
     /**
-     * Update article list with items
+     * Image manager, take url of image + an article
      *
      * @param article article
      * @param glide   image
      */
-    public void updateWithArticle(final Result article, RequestManager glide) {
+    public void updateArticleTopStoriesAndArts(Result article, RequestManager glide) {
+        //Set article content
+        updateWithArticleContent(article, glide);
+        //Set Image
+        if(article.getMultimedia() != null) {
+            try {
+                glide.load(article.getMultimedia().get(0).getUrl()).into(imageView);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e("TAG", "no media");
+            }
+        } else {
+            getImageDefault(glide);
+        }
+
+    }
+
+    public void updateArticleMostPopular(Result article, RequestManager glide) {
+        //Set article content
+        updateWithArticleContent(article, glide);
+        //Set Image
+        if (article.getMedia() != null) {
+            try {
+                glide.load(article.getMedia().get(1).getMediaMetadata().get(1).getUrl()).into(imageView);
+            } catch (IndexOutOfBoundsException e){
+                Log.e("TAG", "no media");
+                Log.e("TAG", e.getMessage());
+            }
+        } else {
+            getImageDefault(glide);
+        }
+
+    }
+
+    public void updateWithArticleContent(final Result article, RequestManager glide) {
         UpdateTextItems update = new UpdateTextItems();
         // set Section
         this.textViewSection.setText(update.setSection(article));
@@ -55,44 +90,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         this.textViewTitle.setText(update.setTitle(article));
         // set Date
         this.textViewDate.setText(update.setDate(article));
-        //set image
-        this.setArticleImage(article, glide);
     }
 
-    /**
-     * Image manager, take url of image + an article
-     *
-     * @param article article
-     * @param glide   image
-     */
-    public void setArticleImage(Result article, RequestManager glide) {
-        //If article url isn't null
-        if (article.getMultimedia() != null) {
-            if (article.getMultimedia().size() > 0) {
-                // get image string
-                String urlMultimedia = article.getMultimedia().get(0).getUrl();
-                // clean the URL
-                if (urlMultimedia.startsWith("images")) {
-                    urlMultimedia = "https://www.nytimes.com/" + urlMultimedia;
-                }
-                glide.load(urlMultimedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
-            } else {
-                // default image
-                getImageDefault(glide);
-            }
-        } else {
-
-            if (article.getMedia() == null) {
-                //image default
-                getImageDefault(glide);
-            } else {
-                // get Url
-                String mUrlMedia = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
-                // glide the string
-                glide.load(mUrlMedia).apply(new RequestOptions().fallback(R.drawable.ic_launcher_background)).into(imageView);
-            }
-        }
-    }
 
     /**
      * Set default image when resource is missing
