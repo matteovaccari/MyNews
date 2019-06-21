@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.matt.android.mynews.R;
-import com.matt.android.mynews.adapters.PageAdapter;
+import com.matt.android.mynews.adapters.viewPager.PageAdapter;
 
 import butterknife.ButterKnife;
 

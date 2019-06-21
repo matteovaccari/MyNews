@@ -1,4 +1,4 @@
-package com.matt.android.mynews.adapters;
+package com.matt.android.mynews.adapters.viewPager;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

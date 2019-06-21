@@ -1,4 +1,4 @@
-package com.matt.android.mynews.adapters;
+package com.matt.android.mynews.adapters.articles;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
 import com.matt.android.mynews.R;
+import com.matt.android.mynews.adapters.RecyclerViewHolder;
 import com.matt.android.mynews.models.api.Result;
 
 import java.util.List;

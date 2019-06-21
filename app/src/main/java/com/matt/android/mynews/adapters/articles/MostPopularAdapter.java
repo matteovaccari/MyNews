@@ -1,4 +1,4 @@
-package com.matt.android.mynews.adapters;
+package com.matt.android.mynews.adapters.articles;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
 import com.matt.android.mynews.R;
+import com.matt.android.mynews.adapters.RecyclerViewHolder;
 import com.matt.android.mynews.models.api.Result;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class MostPopularAdapter extends RecyclerView.Adapter<RecyclerViewHolder>
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.most_popular_item, parent, false);
+        View view = inflater.inflate(R.layout.fragment_item, parent, false);
 
         return new RecyclerViewHolder(view);
     }
