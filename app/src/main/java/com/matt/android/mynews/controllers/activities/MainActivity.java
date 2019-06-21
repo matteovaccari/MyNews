@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager = (ViewPager) findViewById(R.id.view_pager_main_activity);
         //Link it to adapter
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
-
+        //Set loading screens limits to 3
+        viewPager.setOffscreenPageLimit(3);
         //Get TabLayout
         TabLayout tabs = (TabLayout) findViewById(R.id.tab_layout_main_activity);
         //Link it to viewpager
