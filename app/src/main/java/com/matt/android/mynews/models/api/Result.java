@@ -62,7 +62,7 @@ public class Result {
     @SerializedName("source")
     @Expose
     private String source;
-    @SerializedName("updated")
+    @SerializedName("media")
     @Expose
     private List<Medium> media = null;
     @SerializedName("uri")
@@ -70,8 +70,6 @@ public class Result {
     private String uri;
     @Expose
     private List<MultiMedium> multimedia = null;
-
-    @SerializedName("media")
 
     public String getUrl() {
         return url;
