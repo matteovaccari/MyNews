@@ -71,7 +71,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
             try {
                 glide.load(article.getMedia().get(0).getMediaMetadata().get(0).getUrl()).into(imageView);
             } catch (IndexOutOfBoundsException e) {
-                Log.e("TAG", "no media");
+                Log.e("TAG", "no media") ;
             }
         } else {
             getImageDefault(glide);
