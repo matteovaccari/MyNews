@@ -47,26 +47,37 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
      * @param article article
      * @param glide   image
      */
-    public void setArticleImageTopStoriesAndArts(Result article, RequestManager glide) {
+    public void updateArticleTopStoriesAndArts(Result article, RequestManager glide) {
         //Set article content
         updateWithArticleContent(article, glide);
         //Set Image
-        try {
-            glide.load(article.getMultimedia().get(0).getUrl()).into(imageView);
-        } catch (IndexOutOfBoundsException e) {
-            Log.e("TAG", "no media");
+        if(article.getMultimedia() != null) {
+            try {
+                glide.load(article.getMultimedia().get(0).getUrl()).into(imageView);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e("TAG", "no media");
+            }
+        } else {
+            getImageDefault(glide);
         }
+
     }
 
-    public void setArticleImageMostPopular(Result article, RequestManager glide) {
+    public void updateArticleMostPopular(Result article, RequestManager glide) {
         //Set article content
         updateWithArticleContent(article, glide);
         //Set Image
-        try {
-            glide.load(article.getMedia().get(0).getMediaMetadata().get(0).getUrl()).into(imageView);
-        } catch (IndexOutOfBoundsException e){
-            Log.e("TAG", "no media");
+        if (article.getMedia() != null) {
+            try {
+                glide.load(article.getMedia().get(1).getMediaMetadata().get(1).getUrl()).into(imageView);
+            } catch (IndexOutOfBoundsException e){
+                Log.e("TAG", "no media");
+                Log.e("TAG", e.getMessage());
+            }
+        } else {
+            getImageDefault(glide);
         }
+
     }
 
     public void updateWithArticleContent(final Result article, RequestManager glide) {
