@@ -37,5 +37,10 @@
     <string name="sports">Sports</string>
     <string name="travel">Travel</string>
 
+    <!-- URL for API requests -->
+    <string name="top_stories_url">https://api.nytimes.com/svc/topstories/v2/home.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
+    <string name="arts_url">https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
+    <string name="most_popular_url">https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
+
 </resources>
 
