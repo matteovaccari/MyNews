@@ -25,7 +25,7 @@
     <string name="menu_option_5">Notifications</string>
     <string name="menu_tab_name">Find an article</string>
 
-   <!-- Used in Search Fragment -->
+    <!-- Used in Search Fragment -->
     <string name="search_hint">Enter keyword or article title</string>
     <string name="begin_date" tools:ignore="ExtraTranslation">Begin Date</string>
     <string name="end_date">End Date</string>
@@ -42,5 +42,8 @@
     <string name="arts_url">https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
     <string name="most_popular_url">https://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
 
+    <!-- Images content descriptions -->
+    <string name="logo_content_description">application logo</string>
+    <string name="article_list_image_content_description">article image</string>
 </resources>
 
