@@ -11,20 +11,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class NYTStreams {
 
-    public static Observable<MainDataObservable> streamFetchMostPopular(int period) {
-        NYTService nytService = NYTService.retrofitMostPopular.create(NYTService.class);
-        return nytService.getNyMostPopular(period)
+    public static Observable<MainDataObservable> streamFetchUrl(String url) {
+        NYTService nytService = NYTService.retrofit.create(NYTService.class);
+        return nytService.getNews(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);
-    }
-
-    public static Observable<MainDataObservable> streamFetchTopStories(String section) {
-        NYTService nytService = NYTService.retrofitTopStories.create(NYTService.class);
-        return nytService.getNyTopStories(section)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .timeout(10, TimeUnit.SECONDS);
-
     }
 }

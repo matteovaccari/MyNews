@@ -40,6 +40,8 @@ public class MostPopularFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
 
     //---FOR DATA---
+    //Url for API request
+    private String url;
     //Declare disposable
     protected Disposable disposable;
     //Declare List and Adapter
@@ -117,21 +119,26 @@ public class MostPopularFragment extends Fragment {
 
 
     /**
-     * Execute Http Request, using Stream, Observable and Observer - specified period for most popular
+     * Execute Http Request, using Stream (Observable and Observer)
      * OnNext updateUI method take an article List and update it to recyclerView
      */
     protected void executeHttpRequest() {
-        this.disposable = NYTStreams.streamFetchMostPopular(1).subscribeWith(new DisposableObserver<MainDataObservable>() {
+        //Get Url from string values
+        url = getResources().getString(R.string.most_popular_url);
+        this.disposable = NYTStreams.streamFetchUrl(url).subscribeWith(new DisposableObserver<MainDataObservable>() {
             @Override
             public void onNext(MainDataObservable articles) {
                 updateUI(articles.getResults());
             }
+
             @Override
             public void onError(Throwable e) {
                 e.printStackTrace();
             }
+
             @Override
-            public void onComplete() { }
+            public void onComplete() {
+            }
         });
     }
 

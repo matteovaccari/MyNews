@@ -45,6 +45,8 @@ public class TopStoriesFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
 
     //---FOR DATA---
+    //Url for API request
+    private String url;
     //Declare disposable
     protected Disposable disposable;
     //Declare List and Adapter
@@ -122,11 +124,14 @@ public class TopStoriesFragment extends Fragment {
 
 
     /**
-     * Execute Http Request, using Stream, Observable and Observer - specified section for Top Stories (home)
+     * Execute Http Request, using Stream (Observable and Observer)
      * OnNext updateUI method take an article List and update it to recyclerView
      */
     protected void executeHttpRequest() {
-        this.disposable = NYTStreams.streamFetchTopStories("home").subscribeWith(new DisposableObserver<MainDataObservable>() {
+        //Get url from string values
+        url = this.getResources().getString(R.string.top_stories_url);
+
+        this.disposable = NYTStreams.streamFetchUrl(url).subscribeWith(new DisposableObserver<MainDataObservable>() {
             @Override
             public void onNext(MainDataObservable articles) {
                 updateUI(articles.getResults());
