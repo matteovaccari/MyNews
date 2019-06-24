@@ -37,6 +37,7 @@
     <string name="sports">Sports</string>
     <string name="travel">Travel</string>
     <string name="search_button_text">Search</string>
+    <string name="error_message_search_fragment">Please select at least one categorie</string>
 
     <!-- URL for API requests -->
     <string name="top_stories_url">https://api.nytimes.com/svc/topstories/v2/home.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
