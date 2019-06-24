@@ -36,6 +36,7 @@
     <string name="politics">Politics</string>
     <string name="sports">Sports</string>
     <string name="travel">Travel</string>
+    <string name="search_button_text">Search</string>
 
     <!-- URL for API requests -->
     <string name="top_stories_url">https://api.nytimes.com/svc/topstories/v2/home.json?api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm</string>
