@@ -24,7 +24,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:contentDescription="image" />
+            android:contentDescription="@string/article_list_image_content_description" />
 
         <LinearLayout
             android:layout_width="match_parent"
