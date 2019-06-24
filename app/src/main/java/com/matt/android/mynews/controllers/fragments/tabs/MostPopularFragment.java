@@ -39,9 +39,6 @@ public class MostPopularFragment extends Fragment {
     @BindView(R.id.main_fragment_swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    //---FOR DATA---
-    //Url for API request
-    private String url;
     //Declare disposable
     protected Disposable disposable;
     //Declare List and Adapter
@@ -124,7 +121,7 @@ public class MostPopularFragment extends Fragment {
      */
     protected void executeHttpRequest() {
         //Get Url from string values
-        url = getResources().getString(R.string.most_popular_url);
+        String url = getResources().getString(R.string.most_popular_url);
         this.disposable = NYTStreams.streamFetchUrl(url).subscribeWith(new DisposableObserver<MainDataObservable>() {
             @Override
             public void onNext(MainDataObservable articles) {

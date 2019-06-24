@@ -44,9 +44,6 @@ public class TopStoriesFragment extends Fragment {
     @BindView(R.id.main_fragment_swipe_refresh)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    //---FOR DATA---
-    //Url for API request
-    private String url;
     //Declare disposable
     protected Disposable disposable;
     //Declare List and Adapter
@@ -129,7 +126,7 @@ public class TopStoriesFragment extends Fragment {
      */
     protected void executeHttpRequest() {
         //Get url from string values
-        url = this.getResources().getString(R.string.top_stories_url);
+        String url = this.getResources().getString(R.string.top_stories_url);
 
         this.disposable = NYTStreams.streamFetchUrl(url).subscribeWith(new DisposableObserver<MainDataObservable>() {
             @Override
