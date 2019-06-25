@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.controllers.activities.ResultActivity;
+import com.matt.android.mynews.models.utils.Logger;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -255,8 +256,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                 dateSetListener,
                 day, month, year);
         dialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
-        cal.add(Calendar.YEAR, -5);
-        dialog.getDatePicker().setMinDate(cal.getTimeInMillis());
+        dialog.getDatePicker().setMinDate(cal.getTimeInMillis() - 86400000);
         dialog.show();
     }
 
