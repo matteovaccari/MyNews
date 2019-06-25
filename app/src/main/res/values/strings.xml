@@ -47,5 +47,8 @@
     <!-- Images content descriptions -->
     <string name="logo_content_description">application logo</string>
     <string name="article_list_image_content_description">article image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 

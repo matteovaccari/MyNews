@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.matt.android.mynews.R;
 
+
 public class ResultActivity extends AppCompatActivity {
 
     @Override

@@ -40,45 +40,35 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-
     /**
-     * Image manager, take url of image + an article
-     *
+     * Set article image in RecyclerView
      * @param article article
-     * @param glide   image
+     * @param glide Image
      */
-    public void updateArticleTopStoriesAndArts(Result article, RequestManager glide) {
-        //Set article content
-        updateWithArticleContent(article, glide);
-        //Set Image
+    public void setArticleImage(Result article, RequestManager glide) {
+        //Set Image if article is from Multimedia model (Top stories and arts API)
         if (article.getMultimedia() != null) {
             try {
                 glide.load(article.getMultimedia().get(0).getUrl()).into(imageView);
             } catch (IndexOutOfBoundsException e) {
                 Log.e("TAG", "no media");
             }
-        } else {
-            getImageDefault(glide);
         }
-
-    }
-
-    public void updateArticleMostPopular(Result article, RequestManager glide) {
-        //Set article content
-        updateWithArticleContent(article, glide);
-        //Set Image
-        if (article.getMedia() != null) {
+        //Set Image if article is from Media model (Most popular API)
+        else if (article.getMedia() != null) {
             try {
                 glide.load(article.getMedia().get(0).getMediaMetadata().get(0).getUrl()).into(imageView);
             } catch (IndexOutOfBoundsException e) {
                 Log.e("TAG", "no media") ;
             }
-        } else {
-            getImageDefault(glide);
         }
-
     }
 
+    /**
+     * Take information and link it to each recycler view item (title, image, etc)
+     * @param article article
+     * @param glide image
+     */
     public void updateWithArticleContent(final Result article, RequestManager glide) {
         UpdateTextItems update = new UpdateTextItems();
         // set Section
@@ -89,16 +79,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         this.textViewTitle.setText(update.setTitle(article));
         // set Date
         this.textViewDate.setText(update.setDate(article));
+        // set Image
+        this.setArticleImage(article, glide);
     }
 
-
-    /**
-     * Set default image when resource is missing
-     *
-     * @param glide image
-     */
-    private void getImageDefault(RequestManager glide) {
-        glide.clear(imageView);
-        imageView.setImageResource(R.drawable.ic_image_default);
-    }
 }
