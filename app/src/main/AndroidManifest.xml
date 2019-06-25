@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controllers.activities.ResultActivity"></activity>
+        <activity android:name=".controllers.activities.WebViewActivity"></activity>
+        <activity android:name=".controllers.activities.ResultActivity" />
         <activity
             android:name=".controllers.activities.SearchActivity"
             android:label="Search"
-            android:parentActivityName=".controllers.activities.MainActivity"></activity>
+            android:parentActivityName=".controllers.activities.MainActivity" />
         <activity android:name=".controllers.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
