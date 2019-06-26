@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +37,8 @@ public class SharedPreferencesManager {
      * who will be used for Search API request
      *
      * @param search_query Search hint EditText
-     * @param search_begin_date Begin Date EditText
-     * @param search_end_date End Date EditText
+     * @param search_begin_date Begin Date TextView
+     * @param search_end_date End Date TextView
      * @param artsCheckBox Arts checkbox
      * @param businessCheckBox Business checkbox
      * @param entrepreneursCheckBox Entrepreneurs checkbox
@@ -45,7 +46,7 @@ public class SharedPreferencesManager {
      * @param sportsCheckBox Sports checkbox
      * @param travelCheckBox Travel checkbox
      */
-    public void getUserInput(EditText search_query, EditText search_begin_date, EditText search_end_date,
+    public void getUserInput(EditText search_query, TextView search_begin_date, TextView search_end_date,
                              CheckBox artsCheckBox, CheckBox businessCheckBox, CheckBox entrepreneursCheckBox,
                              CheckBox politicsCheckBox, CheckBox sportsCheckBox, CheckBox travelCheckBox) {
 
@@ -142,6 +143,8 @@ public class SharedPreferencesManager {
         return (!checkboxQuery.isEmpty() && !query.isEmpty());
     }
 
-
+    public String getString(String key) {
+        return preferences.getString(key, null);
+    }
 
 }
