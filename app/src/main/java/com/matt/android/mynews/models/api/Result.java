@@ -1,5 +1,8 @@
 package com.matt.android.mynews.models.api;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
@@ -225,6 +228,87 @@ public class Result {
 
     public List<MultiMedium> getMultimedia() {
         return multimedia;
+    }
+
+    //Search
+
+    @SerializedName("pub_date")
+    @Expose
+    private Date published_date;
+
+    @SerializedName("headline")
+    @Expose
+    private Result headline;
+
+    @SerializedName("main")
+    @Expose
+    private String main;
+
+    //List of news if NewsObject is from Article Search Api
+    @SerializedName("docs")
+    @Expose
+    private ArrayList<Result> docs;
+
+    //Number of hits from Article Search
+    @SerializedName("meta")
+    @Expose
+    private Result meta;
+
+    @SerializedName("hits")
+    @Expose
+    public int hits;
+
+
+    public int getHits() {
+        return hits;
+    }
+
+    public String getImageUrl() {
+        try {
+            return multimedia.get(0).getUrl();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Result getMeta() {
+        return meta;
+    }
+
+    ArrayList<Result> getDocs() {
+        return docs;
+    }
+
+    public String sectionAndSubsectionString() {
+        String str = "";
+        if (section != null && subsection != null && !subsection.equals("false") && !subsection.equals(section)) {
+            str += section + " > " + subsection;
+        } else if (section != null) {
+            str += section;
+        } else if (headline.getMain() != null) {
+            str += headline.getMain();
+        }
+        return str;
+    }
+
+    void setMultimedia(ArrayList<MultiMedium> multimedia) {
+        this.multimedia = multimedia;
+    }
+
+    private String getMain() {
+        return main;
+    }
+
+    void setPublished_date(Date published_date) {
+        this.published_date = published_date;
+    }
+
+    void setMain(String main) {
+        this.main = main;
+    }
+
+    void setHeadline(Result headline) {
+        this.headline = headline;
     }
 
 }

@@ -21,6 +21,7 @@ import com.matt.android.mynews.models.api.MainDataObservable;
 import com.matt.android.mynews.models.api.NYTStreams;
 import com.matt.android.mynews.models.api.Result;
 import com.matt.android.mynews.models.utils.ItemClickSupport;
+import com.matt.android.mynews.models.utils.Logger;
 import com.matt.android.mynews.models.utils.SharedPreferencesManager;
 
 import java.util.ArrayList;
@@ -78,16 +79,17 @@ public class ResultFragment extends Fragment {
             @Override
             public void onNext(MainDataObservable newsObject) {
                 updateUIWithListOfNews(newsObject);
+                Logger.e("Search result content : " + newsObject.getResults());
             }
 
             @Override
             public void onError(Throwable e) {
-
+                Logger.e("Error : " + e.getMessage());
             }
 
             @Override
             public void onComplete() {
-
+                Logger.e("Search display completed");
             }
         });
     }
