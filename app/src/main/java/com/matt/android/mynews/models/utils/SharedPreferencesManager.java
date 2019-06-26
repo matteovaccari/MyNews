@@ -75,6 +75,35 @@ public class SharedPreferencesManager {
         }
     }
 
+    /**
+     * Method who link together every search info (what user typed + checkbox + date interval)
+     * into a unique url (String) who will be used for API request
+     */
+    public void createSearchUrlForAPIRequest(){
+
+        //Add default url
+        url = "http://api.nytimes.com/svc/search/v2/articlesearch.json?&" +
+                 "api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm&fq=news_desk:("
+
+                //Add checkbox filters
+                + checkboxQuery
+
+                //Add what user typed
+                +")&q=";
+        if(!query.isEmpty()) {
+            url += query;
+        }
+
+        //Add date interval
+        if (!beginDate.isEmpty()) {
+            url += "&begin_date=" + beginDate;
+        }
+        if(!endDate.isEmpty()) {
+            url += "&end_date=" + endDate;
+        }
+        //Sort results by newest
+        url += "&sort=newest";
+    }
 
     /**
      * Save the url in shared preferences
@@ -93,6 +122,9 @@ public class SharedPreferencesManager {
         return url;
     }
 
+    /**
+     * Method call to clear last input to avoid error like user can search using last search elements
+     */
     public void clearInput() {
         checkboxQuery = "";
         url = "";
