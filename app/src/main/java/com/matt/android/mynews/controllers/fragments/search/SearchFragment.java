@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,7 +23,12 @@ import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.controllers.activities.ResultActivity;
+import com.matt.android.mynews.controllers.activities.SearchActivity;
+import com.matt.android.mynews.models.api.Result;
 import com.matt.android.mynews.models.utils.Logger;
+import com.matt.android.mynews.models.utils.SharedPreferencesManager;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -31,11 +37,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.app.SearchManager.QUERY;
+import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_SEARCH;
 
 /**
  * Fragment who will contain all search-related options (date,key words, section)
  */
-public class SearchFragment extends Fragment implements View.OnClickListener {
+public class SearchFragment extends Fragment {
 
     // --- FOR DESIGN
     //For date (begin + end date)
@@ -44,8 +51,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.search_fragment_end_date)
     TextView endDate;
     //Hint edit text
-    @BindView(R.id.search_fragment_edit_text)
-    EditText editText;
+    @BindView(R.id.search_fragment_search_query)
+    EditText search_query;
     //Search Button
     @BindView(R.id.search_fragment_button_search)
     Button searchButton;
@@ -63,20 +70,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.search_fragment_travel_check_box)
     CheckBox travelCheckBox;
 
+    protected SharedPreferencesManager preferences;
     // Date
-    private String dateBeginForData;
-    private String endDateForData;
     private DatePickerDialog.OnDateSetListener onDateSetListenerBeginDate;
     private DatePickerDialog.OnDateSetListener onDateSetListenerEndDate;
     private String dateBeginText;
     private String endDateText;
-    public static final String DATE_BEGIN = "dateBegin";
-    public static final String END_DATE = "endDate";
-    public static final String FILTER = "filter";
-    // Query & Filter
-    private String query;
-    private String filter;
-    private SearchFragment.OnButtonClickedListener callback;
 
     //Constructor
     public SearchFragment() {
@@ -85,111 +84,51 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         //Initialize ButterKnife
         ButterKnife.bind(this, view);
 
-        this.getEditTextForQuery();
         // Display date
         this.getDisplayBeginDate();
         this.getDisplayDateEnding();
-        //Search button
-        this.getSearchButton();
+        this.getUrlForSearchQuery();
 
         return view;
     }
 
-    /**
-     * Override method from View.OnClickListener, things to do when user click on Search Button
-     * @param view View
-     */
-    @Override
-    public void onClick(View view) {
-        // CheckBox
-        getCheckBox();
-        callback.onButtonClicked(view);
-        Intent intentResultActivity = new Intent(getActivity(), ResultActivity.class); //Result Activity have to be created
-        // put data into activity
-        intentResultActivity.putExtra(QUERY, getQuery());
-        intentResultActivity.putExtra(DATE_BEGIN, dateBeginForData);
-        intentResultActivity.putExtra(END_DATE, endDateForData);
-        intentResultActivity.putExtra(FILTER, filter);
+    private void getUrlForSearchQuery(){
+        preferences = new SharedPreferencesManager(this.getActivity().getApplicationContext());
 
-        if (!filter.equals("")) {
-            startActivity(intentResultActivity);
-        }
-    }
-    /**
-     * Configure CheckBox
-     */
-    protected void getCheckBox() {
-        filter = "";
-        if (artsCheckBox.isChecked()) {
-            filter = "Arts";
-        }
-        if (businessCheckBox.isChecked()) {
-            filter = "Business";
-        }
-        if (entrepreneursCheckBox.isChecked()) {
-            filter = "Entrepreneurs";
-        }
-        if (politicsCheckBox.isChecked()) {
-            filter = "Politics";
-        }
-        if (sportsCheckBox.isChecked()) {
-            filter = "Sports";
-        }
-        if (travelCheckBox.isChecked()) {
-            filter = "Travel";
-        }
-        if (filter.equals("")) {
-            Toast.makeText(getContext(), R.string.error_message_search_fragment, Toast.LENGTH_SHORT).show();
-        }
-    }
-    /**
-     * Button Listener
-     */
-    public interface OnButtonClickedListener {
-        void onButtonClicked(View view);
-    }
-
-    /**
-     * Enable Search Button when user typed something in edit text
-     */
-    private void getEditTextForQuery() {
-        //Edit text
-        editText.addTextChangedListener(new TextWatcher() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void onClick(View v) {
+                //Get user input
+                preferences.getUserInput(search_query, beginDate, endDate, artsCheckBox, travelCheckBox,
+                        politicsCheckBox, businessCheckBox, entrepreneursCheckBox, sportsCheckBox);
 
-            @Override
-            public void onTextChanged(CharSequence text, int start, int before, int count) {
-                searchButton.setEnabled(text.toString().length() != 0);
-            }
+                //Start result activity if conditions are met
+                if (preferences.checkConditions()) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
+                    //Create url from user input + save it
+                    preferences.createSearchUrlForAPIRequest();
+                    preferences.saveUrl(PREF_KEY_SEARCH);
+
+                    startActivity(new Intent(getContext(), ResultActivity.class));
+                } else {
+                    preferences.clearInput();
+                    Toast.makeText(getContext(), "Please select at least one categorie and a keyword", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-    /**
-     * Method who return what user typed
-     * @return String query
-     */
-    private String getQuery() {
-        query = "";
-        query = editText.getText().toString();
-        Log.i("Query", query);
-        return query;
-    }
 
-    /**
-     * Date Display
-     */
+
+
+    //---- Date display ----
+
     private void getDisplayBeginDate() {
         // Date of begin
         beginDate.setOnClickListener(new View.OnClickListener() {
@@ -205,13 +144,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
                 month = month + 1;
 
-                dateBeginText = dayOfMonth + "/" + month + "/" + year;
+                dateBeginText ="" + year + month + dayOfMonth;
 
-                dateBeginForData = dayOfMonth + "/" + month + "/" + year;
                 if (month < 10) {
-                    dateBeginForData = year + "0" + month + "" + dayOfMonth;
-                } else dateBeginForData = year + "" + month + "" + dayOfMonth;
-
+                    dateBeginText = year + "0" + month + dayOfMonth;
+                }
+                Logger.e("begin : " + dateBeginText);
                 beginDate.setText(dateBeginText);
             }
 
@@ -231,11 +169,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                endDateText = dayOfMonth + "/" + month + "/" + year;
+                endDateText = "" +year + month + dayOfMonth;
                 if (month < 10) {
-                    endDateForData = year + "0" + month + "" + dayOfMonth;
-                } else endDateForData = year + "" + month + "" + dayOfMonth;
-                System.out.println(endDateForData);
+                    endDateText = year + "0" + month + dayOfMonth;
+                }
+                Logger.e("end : " + endDateText);
                 endDate.setText(endDateText);
             }
         };
@@ -258,12 +196,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         dialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
         dialog.getDatePicker().setMinDate(cal.getTimeInMillis() - 86400000);
         dialog.show();
-    }
-
-    private void getSearchButton() {
-        searchButton.setOnClickListener(this);
-        // Search Button is not enabled
-        searchButton.setEnabled(false);
     }
 
 }
