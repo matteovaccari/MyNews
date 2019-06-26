@@ -260,28 +260,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         dialog.show();
     }
 
-    private void createCallbackToParentActivity() {
-        try {
-            callback = (OnButtonClickedListener) getActivity();
-        } catch (ClassCastException e) {
-            throw new ClassCastException(e.toString() + "must implement OnButtonClickListener");
-        }
-    }
-
     private void getSearchButton() {
         searchButton.setOnClickListener(this);
         // Search Button is not enabled
         searchButton.setEnabled(false);
     }
 
-
-    /**
-     * Attach the fragment with activity
-     * @param context Context
-     */ /*
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.createCallbackToParentActivity();
-    } */
 }
