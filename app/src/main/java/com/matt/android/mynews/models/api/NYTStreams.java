@@ -1,5 +1,6 @@
 package com.matt.android.mynews.models.api;
 
+
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
