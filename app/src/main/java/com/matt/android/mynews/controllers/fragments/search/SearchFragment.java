@@ -192,9 +192,10 @@ public class SearchFragment extends Fragment {
                 Objects.requireNonNull(getActivity()),
                 R.style.DatePickerDialogTheme,
                 dateSetListener,
-                day, month, year);
+                year, month , day);
         dialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
-        dialog.getDatePicker().setMinDate(cal.getTimeInMillis() - 86400000);
+        cal.add(Calendar.YEAR, -20);
+        dialog.getDatePicker().setMinDate(cal.getTimeInMillis());
         dialog.show();
     }
 
