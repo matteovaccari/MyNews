@@ -19,6 +19,7 @@ import com.matt.android.mynews.models.api.NYTStreams;
 import com.matt.android.mynews.models.api.search.NewsItem;
 import com.matt.android.mynews.models.api.search.NewsObject;
 import com.matt.android.mynews.models.utils.ItemClickSupport;
+import com.matt.android.mynews.models.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
@@ -35,8 +37,6 @@ import io.reactivex.observers.DisposableObserver;
 public abstract class BaseFragment extends Fragment {
 
     protected abstract int getFragmentLayout();
-
-    protected abstract void executeHttpRequest();
 
     public abstract void setUrl();
 
@@ -68,11 +68,12 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getFragmentLayout(), container, false);
         // Instantiate ButterKnife
         ButterKnife.bind(this, view);
+        //Set url
+        this.setUrl();
         // Configure RecyclerView (+click)
         this.configureRecyclerView();
         // API request
         this.executeHttpRequest();
-        this.setUrl();
         // SwipeRefreshLayout
         this.configureSwipeRefreshLayout();
         return view;
@@ -134,8 +135,6 @@ public abstract class BaseFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
             resultList.clear();
             resultList.addAll(article.getList());
-            // reverse the list to have an ascendant list of date in RecyclerView
-            Collections.reverse(resultList);
             adapter.notifyDataSetChanged();
         }
 
@@ -164,7 +163,7 @@ public abstract class BaseFragment extends Fragment {
      * Execute Http Request, using Stream (Observable and Observer)
      * OnNext updateUI method take an article List and update it to recyclerView
      */
-    protected void executeHttpRequestWithRetrofit() {
+    protected void executeHttpRequest() {
 
         //- Execute the stream subscribing to Observable defined inside NewsStream
         this.disposable = NYTStreams.streamFetchUrl(url).subscribeWith(new DisposableObserver<NewsObject>() {
@@ -176,12 +175,13 @@ public abstract class BaseFragment extends Fragment {
 
             @Override
             public void onError(Throwable e) {
-
+                Logger.e(e.getMessage());
 
             }
 
             @Override
             public void onComplete() {
+                Logger.e("request completed");
             }
         });
     }
