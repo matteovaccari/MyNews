@@ -48,7 +48,7 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
                    .into(imageView);
        } catch (Exception e) {
            Glide.with(context)
-                   .load(R.drawable.ic_image_default)
+                   .load(R.drawable.nyt_logo)
                    .into(imageView);
        }
     }
