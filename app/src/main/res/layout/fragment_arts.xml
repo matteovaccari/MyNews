@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:id="@+id/main_fragment_swipe_refresh"
     android:layout_height="match_parent"
-    tools:context=".controllers.fragments.tabs.MostPopularFragment">
+    tools:context=".controllers.fragments.tabs.ArtsFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_fragment_recyclerView"
