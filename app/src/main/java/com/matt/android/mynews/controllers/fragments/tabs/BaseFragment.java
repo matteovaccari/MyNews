@@ -3,6 +3,7 @@ package com.matt.android.mynews.controllers.fragments.tabs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -122,12 +123,17 @@ public abstract class BaseFragment extends Fragment {
      * @param textArticle Article list
      */
     protected void updateUI(NewsObject article) {
-        swipeRefreshLayout.setRefreshing(false);
-        resultList.clear();
-        resultList.addAll(article);
-        // reverse the list to have an ascendant list of date in RecyclerView
-        Collections.reverse(resultList);
-        adapter.notifyDataSetChanged();
+        if (article.checkIfResult() == 0) {
+            Snackbar.make(recyclerView, "No results found", Snackbar.LENGTH_LONG).show();
+        } else {
+            swipeRefreshLayout.setRefreshing(false);
+            resultList.clear();
+            resultList.addAll(article.getList());
+            // reverse the list to have an ascendant list of date in RecyclerView
+            Collections.reverse(resultList);
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     /**
