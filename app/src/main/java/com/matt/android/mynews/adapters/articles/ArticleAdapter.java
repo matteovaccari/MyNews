@@ -7,24 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.RequestManager;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.RecyclerViewHolder;
-import com.matt.android.mynews.models.api.Result;
+import com.matt.android.mynews.models.api.search.NewsItem;
 
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
     //Article list
-    private List<Result> articlesList;
-    //Image
-    private RequestManager glide;
+    private List<NewsItem> articlesList;
+    //Context
+    private Context context;
 
     //Constructor
-    public ArticleAdapter(List<Result> articlesList, RequestManager glide) {
+    public ArticleAdapter(List<NewsItem> articlesList) {
         this.articlesList = articlesList;
-        this.glide = glide;
     }
 
     /**
@@ -52,7 +50,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
      */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder viewHolder, int position) {
-        viewHolder.updateWithArticleContent(this.articlesList.get(position), this.glide);
+        viewHolder.updateWithArticleContent(this.articlesList.get(position), context);
     }
 
     /**
