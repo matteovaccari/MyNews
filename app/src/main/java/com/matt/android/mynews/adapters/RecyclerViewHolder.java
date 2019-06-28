@@ -1,18 +1,15 @@
 package com.matt.android.mynews.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.Glide;
 import com.matt.android.mynews.R;
-import com.matt.android.mynews.models.api.Result;
-import com.matt.android.mynews.models.utils.UpdateTextItems;
-import com.matt.android.mynews.models.api.MultiMedium;
+import com.matt.android.mynews.models.api.search.NewsItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,8 +24,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     TextView textViewTitle;
     @BindView(R.id.fragment_main_section)
     TextView textViewSection;
-    @BindView(R.id.fragment_main_subsection)
-    TextView textViewSubSection;
     @BindView(R.id.fragment_main_date)
     TextView textViewDate;
     @BindView(R.id.fragment_main_item_image)
@@ -42,45 +37,36 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
     /**
      * Set article image in RecyclerView
-     * @param article article
-     * @param glide Image
+     * @param article News Item Article
+     * @param context Context
      */
-    public void setArticleImage(Result article, RequestManager glide) {
-        //Set Image if article is from Multimedia model (Top stories and arts API)
-        if (article.getMultimedia() != null) {
-            try {
-                glide.load(article.getMultimedia().get(0).getUrl()).into(imageView);
-            } catch (IndexOutOfBoundsException e) {
-                Log.e("TAG", "no media");
-            }
-        }
-        //Set Image if article is from Media model (Most popular API)
-        else if (article.getMedia() != null) {
-            try {
-                glide.load(article.getMedia().get(0).getMediaMetadata().get(0).getUrl()).into(imageView);
-            } catch (IndexOutOfBoundsException e) {
-                Log.e("TAG", "no media") ;
-            }
-        }
+    public void setArticleImage(final NewsItem article, final Context context) {
+       try {
+           String url = article.getImageUrl();
+           Glide.with(context)
+                   .load(url)
+                   .into(imageView);
+       } catch (Exception e) {
+           Glide.with(context)
+                   .load(R.drawable.ic_image_default)
+                   .into(imageView);
+       }
     }
 
     /**
      * Take information and link it to each recycler view item (title, image, etc)
      * @param article article
-     * @param glide image
+     * @param context Context
      */
-    public void updateWithArticleContent(final Result article, RequestManager glide) {
-        UpdateTextItems update = new UpdateTextItems();
-        // set Section
-        this.textViewSection.setText(update.setSection(article));
-        // set Subsection
-        this.textViewSubSection.setText(update.setSubSection(article));
+    public void updateWithArticleContent(final NewsItem article, final Context context) {
+        // set Section and subSection
+        this.textViewSection.setText(article.sectionAndSubsection());
         // set Title
-        this.textViewTitle.setText(update.setTitle(article));
+        this.textViewTitle.setText(article.getTitle());
         // set Date
-        this.textViewDate.setText(update.setDate(article));
+        this.textViewDate.setText(article.getPublished_date());
         // set Image
-        this.setArticleImage(article, glide);
+        this.setArticleImage(article, context);
     }
 
 }
