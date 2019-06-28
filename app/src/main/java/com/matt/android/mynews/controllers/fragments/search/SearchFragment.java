@@ -2,14 +2,10 @@ package com.matt.android.mynews.controllers.fragments.search;
 
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +13,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.controllers.activities.ResultActivity;
-import com.matt.android.mynews.controllers.activities.SearchActivity;
-import com.matt.android.mynews.models.api.Result;
 import com.matt.android.mynews.models.utils.Logger;
 import com.matt.android.mynews.models.utils.SharedPreferencesManager;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -36,7 +27,6 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.app.SearchManager.QUERY;
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_SEARCH;
 
 /**
