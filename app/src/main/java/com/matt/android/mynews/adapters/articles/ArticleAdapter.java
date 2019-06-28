@@ -28,14 +28,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     /**
      * Create viewHolder and inflating its layout
      *
-     * @param parent   Parent Activity
+     * @param parent Parent Activity
      * @param viewType view
      * @return viewHolder(view)
      */
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_item, parent, false);
 
