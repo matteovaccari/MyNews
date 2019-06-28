@@ -17,6 +17,8 @@ import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.articles.ArticleAdapter;
 import com.matt.android.mynews.controllers.activities.WebViewActivity;
 import com.matt.android.mynews.models.api.Result;
+import com.matt.android.mynews.models.api.search.NewsItem;
+import com.matt.android.mynews.models.api.search.NewsObject;
 import com.matt.android.mynews.models.utils.ItemClickSupport;
 
 import java.util.ArrayList;
@@ -55,7 +57,7 @@ public abstract class BaseFragment extends Fragment {
     // Declare disposable to call Retrofit
     protected Disposable disposable;
     // Declare lists & Adapters
-    private List<Result> resultList;
+    private List<NewsItem> resultList;
     private ArticleAdapter adapter;
 
     @Override
@@ -94,7 +96,7 @@ public abstract class BaseFragment extends Fragment {
      */
     private void configureRecyclerView() {
         this.resultList = new ArrayList<>();
-        adapter = new ArticleAdapter(resultList, Glide.with(this));
+        adapter = new ArticleAdapter(resultList);
         this.recyclerView.setAdapter(adapter);
         //Re-organize LayoutManager for item positions
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -119,37 +121,13 @@ public abstract class BaseFragment extends Fragment {
      *
      * @param textArticle Article list
      */
-    protected void updateUI(List<Result> textArticle) {
+    protected void updateUI(NewsObject article) {
         swipeRefreshLayout.setRefreshing(false);
         resultList.clear();
-        sortDateArray(textArticle);
-        resultList.addAll(textArticle);
+        resultList.addAll(article);
         // reverse the list to have an ascendant list of date in RecyclerView
         Collections.reverse(resultList);
         adapter.notifyDataSetChanged();
-    }
-
-    /**
-     * Sort article list by Date
-     *
-     * @param textArticle Article list
-     */
-    private void sortDateArray(final List<Result> textArticle) {
-        for (int i = 0; i < textArticle.size(); i++)
-            Collections.sort(textArticle, new Comparator<Result>() {
-                public int compare(Result textArticle1, Result textArticle2) {
-                    String date1 = (String) textArticle1.getPublishedDate();
-                    String date2 = (String) textArticle2.getPublishedDate();
-                    int result = date1.compareTo(date2);
-                    if (result == 0) {
-                        return date1.compareTo(date2);
-                    }
-                    return result;
-                }
-            });
-        Iterator<Result> it = textArticle.iterator();
-        while (it.hasNext())
-            Log.i("List", "List finale" + it.next());
     }
 
     /**
