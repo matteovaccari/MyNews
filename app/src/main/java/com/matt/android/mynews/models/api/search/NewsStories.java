@@ -70,7 +70,7 @@ public class NewsStories implements NewsItem {
     }
 
     @Override
-    public String sectionAndSubsectionString() {
+    public String sectionAndSubsection() {
         String str = "";
         if (subsection != null && subsection.length() > 1) {
             str += section + " > " + subsection;

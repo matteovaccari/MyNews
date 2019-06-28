@@ -85,7 +85,7 @@ public class NewsSearch implements NewsItem {
     }
 
     @Override
-    public String sectionAndSubsectionString() {
+    public String sectionAndSubsection() {
         String str = "";
         if (section != null && subsection != null && !subsection.equals("false") && !subsection.equals(section)) {
             str += section + " > " + subsection;
