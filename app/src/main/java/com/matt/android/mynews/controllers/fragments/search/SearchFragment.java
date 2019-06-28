@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +65,10 @@ public class SearchFragment extends Fragment {
     // Date
     private DatePickerDialog.OnDateSetListener onDateSetListenerBeginDate;
     private DatePickerDialog.OnDateSetListener onDateSetListenerEndDate;
-    private String dateBeginText;
+    private String beginDateText;
     private String endDateText;
+    private String beginDateDisplay;
+    private String endDateDisplay;
 
     //Constructor
     public SearchFragment() {
@@ -96,7 +99,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Get user input
-                preferences.getUserInput(search_query, beginDate, endDate, artsCheckBox, travelCheckBox,
+                preferences.getUserInput(search_query, beginDateText, endDateText, artsCheckBox, travelCheckBox,
                         politicsCheckBox, businessCheckBox, entrepreneursCheckBox, sportsCheckBox);
 
                 //Start result activity if conditions are met
@@ -134,13 +137,16 @@ public class SearchFragment extends Fragment {
 
                 month = month + 1;
 
-                dateBeginText ="" + year + month + dayOfMonth;
+                beginDateText ="" + year + month + dayOfMonth;
 
                 if (month < 10) {
-                    dateBeginText = year + "0" + month + dayOfMonth;
+                    beginDateText = year + "0" + month + dayOfMonth;
+                    beginDateDisplay = year + "0" + month + dayOfMonth;
                 }
-                Logger.e("begin : " + dateBeginText);
-                beginDate.setText(dateBeginText);
+                Logger.e("begin1 : " + beginDateText);
+                beginDateDisplay = year + "/" + month + "/" + dayOfMonth;
+                Logger.e("begin2 : " + beginDateDisplay);
+                beginDate.setText(beginDateDisplay);
             }
 
         };
@@ -162,9 +168,12 @@ public class SearchFragment extends Fragment {
                 endDateText = "" +year + month + dayOfMonth;
                 if (month < 10) {
                     endDateText = year + "0" + month + dayOfMonth;
+                    endDateDisplay = year + "0" + month + dayOfMonth;
                 }
-                Logger.e("end : " + endDateText);
-                endDate.setText(endDateText);
+                Logger.e("end1 : " + endDateText);
+                endDateDisplay = year + "/" + month + "/" + dayOfMonth;
+                Logger.e("end2 : " + endDateDisplay);
+                endDate.setText(endDateDisplay);
             }
         };
     }

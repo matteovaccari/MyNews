@@ -46,7 +46,7 @@ public class SharedPreferencesManager {
      * @param sportsCheckBox Sports checkbox
      * @param travelCheckBox Travel checkbox
      */
-    public void getUserInput(EditText search_query, TextView search_begin_date, TextView search_end_date,
+    public void getUserInput(EditText search_query, String search_begin_date, String search_end_date,
                              CheckBox artsCheckBox, CheckBox businessCheckBox, CheckBox entrepreneursCheckBox,
                              CheckBox politicsCheckBox, CheckBox sportsCheckBox, CheckBox travelCheckBox) {
 
@@ -55,9 +55,9 @@ public class SharedPreferencesManager {
 
         //Check if date interval isn't null and put dates into related string vars
         if(search_begin_date != null && search_end_date != null) {
-            beginDate = search_begin_date.getText().toString();
+            beginDate = search_begin_date;
             beginDate = beginDate.replace("/", "");
-            endDate = search_end_date.getText().toString();
+            endDate = search_end_date;
             endDate = endDate.replace("/", "");
         }
 
