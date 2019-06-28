@@ -8,29 +8,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.articles.ArticleAdapter;
 import com.matt.android.mynews.controllers.activities.WebViewActivity;
-import com.matt.android.mynews.models.api.Result;
+import com.matt.android.mynews.models.api.NYTStreams;
 import com.matt.android.mynews.models.api.search.NewsItem;
 import com.matt.android.mynews.models.api.search.NewsObject;
 import com.matt.android.mynews.models.utils.ItemClickSupport;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +37,8 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getFragmentLayout();
 
     protected abstract void executeHttpRequest();
+
+    public abstract void setUrl();
 
     //Url for WebView
     public static final String BUNDLE_URL = "BUNDLE_URL";
@@ -57,6 +56,7 @@ public abstract class BaseFragment extends Fragment {
     // ----FOR DATA ----
     // Declare disposable to call Retrofit
     protected Disposable disposable;
+    protected String url;
     // Declare lists & Adapters
     private List<NewsItem> resultList;
     private ArticleAdapter adapter;
@@ -72,6 +72,7 @@ public abstract class BaseFragment extends Fragment {
         this.configureRecyclerView();
         // API request
         this.executeHttpRequest();
+        this.setUrl();
         // SwipeRefreshLayout
         this.configureSwipeRefreshLayout();
         return view;
@@ -96,11 +97,15 @@ public abstract class BaseFragment extends Fragment {
      * Configure RecyclerView, Adapter, LayoutManager and link it together
      */
     private void configureRecyclerView() {
+        //Reset list
         this.resultList = new ArrayList<>();
+        //Create adapter
         adapter = new ArticleAdapter(resultList);
+        //Set adapter to recycler view
         this.recyclerView.setAdapter(adapter);
         //Re-organize LayoutManager for item positions
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //Set click on for recyclerView
         this.configureOnClickRecyclerView();
     }
 
@@ -120,7 +125,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * At each update, resultList is cleared, sorted, added then NotifyDataSetChanged is called for adapter
      *
-     * @param textArticle Article list
+     * @param article NewsObject
      */
     protected void updateUI(NewsObject article) {
         if (article.checkIfResult() == 0) {
@@ -153,6 +158,32 @@ public abstract class BaseFragment extends Fragment {
                     }
 
                 });
+    }
+
+    /**
+     * Execute Http Request, using Stream (Observable and Observer)
+     * OnNext updateUI method take an article List and update it to recyclerView
+     */
+    protected void executeHttpRequestWithRetrofit() {
+
+        //- Execute the stream subscribing to Observable defined inside NewsStream
+        this.disposable = NYTStreams.streamFetchUrl(url).subscribeWith(new DisposableObserver<NewsObject>() {
+            @Override
+            public void onNext(NewsObject news) {
+                // - Update UI with list of news
+                updateUI(news);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 
 }
