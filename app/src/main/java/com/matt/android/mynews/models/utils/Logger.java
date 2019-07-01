@@ -16,7 +16,7 @@ public class Logger {
     public static void w(String message) {
         Log.w("TAG", message);
     }
-    
+
     public static void i(String message) {
         Log.i("TAG", message);
     }
