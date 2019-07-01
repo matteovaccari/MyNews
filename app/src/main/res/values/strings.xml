@@ -10,10 +10,14 @@
     <string name="most_popular_content">Most popular content will be displayed here</string>
     <string name="arts_content">Arts content will be displayed here</string>
 
-    <!-- Tab buttons names -->
+    <!-- Tab buttons icons names -->
     <string name="search_button">Search</string>
     <string name="settings_button">Settings</string>
     <string name="back_button">Back Button</string>
+    <string name="notifications_button">Notifications</string>
+    <string name="about_button">About</string>
+    <string name="help_button">Help</string>
+
 
     <!-- Used in NavigationDrawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
