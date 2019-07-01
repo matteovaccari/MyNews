@@ -139,12 +139,17 @@ public class SearchFragment extends Fragment {
 
                 beginDateText ="" + year + month + dayOfMonth;
 
-                if (month < 10) {
+                //Set date display different from what will be used in API request
+                if (month < 10 && dayOfMonth > 10) {
                     beginDateText = year + "0" + month + dayOfMonth;
-                    beginDateDisplay = year + "0" + month + dayOfMonth;
+                    beginDateDisplay = year + "/0" + month + "/" + dayOfMonth;
+                } else if (month < 10 && dayOfMonth < 10) {
+                    beginDateDisplay = year + "/0" + month + "/0" + dayOfMonth;
+                } else {
+                    beginDateDisplay = year + "/" + month + "/" + dayOfMonth;
                 }
+
                 Logger.e("begin1 : " + beginDateText);
-                beginDateDisplay = year + "/" + month + "/" + dayOfMonth;
                 Logger.e("begin2 : " + beginDateDisplay);
                 beginDate.setText(beginDateDisplay);
             }
@@ -165,13 +170,20 @@ public class SearchFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
+
                 endDateText = "" +year + month + dayOfMonth;
-                if (month < 10) {
+
+                //Set date display different from what will be used in API request
+                if (month < 10 && dayOfMonth > 10) {
                     endDateText = year + "0" + month + dayOfMonth;
-                    endDateDisplay = year + "0" + month + dayOfMonth;
+                    endDateDisplay = year + "/0" + month + "/" + dayOfMonth;
+                } else if (month < 10 && dayOfMonth < 10) {
+                    endDateDisplay = year + "/0" + month + "/0" + dayOfMonth;
+                } else {
+                    endDateDisplay = year + "/" + month + "/" + dayOfMonth;
                 }
+
                 Logger.e("end1 : " + endDateText);
-                endDateDisplay = year + "/" + month + "/" + dayOfMonth;
                 Logger.e("end2 : " + endDateDisplay);
                 endDate.setText(endDateDisplay);
             }
