@@ -52,13 +52,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     /**
      * Actions to do depending of which button (search, settings) is selected in the home page (toolbar)
      */
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search_button_main_activity:
                 this.launchSearchActivity();
                 return true;
-            case R.id.settings_button_main_activity:
-                Toast.makeText(this, "This will launch settings feature", Toast.LENGTH_SHORT).show();
+            case R.id.notifications_button:
+                Toast.makeText(this, "This will launch notification feature", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.about_button:
+                Toast.makeText(this, "This will launch about feature", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.help_button:
+                Toast.makeText(this, "This will launch help feature", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
