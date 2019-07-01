@@ -13,6 +13,7 @@
         <!-- Color of the title text in the Toolbar -->
         <item name="android:textColorPrimary">@color/colorTitle</item>
         <item name="colorControlNormal">@color/colorTitle</item>
+        <item name="android:actionMenuTextColor">@color/colorTitle</item>
     </style>
 
     <!-- TOOLBAR TITLE THEME -->
