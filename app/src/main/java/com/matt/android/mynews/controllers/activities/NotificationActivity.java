@@ -4,10 +4,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.utils.SharedPreferencesManager;
@@ -79,10 +82,40 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Set listener to switch to enable notifications
+     */
     private void initNotification() {
         //Open the keyboard automatically
         search_query.setSelection(0);
         Objects.requireNonNull(this.getWindow()).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        //Set Listener to switch
+        switchNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    //Get user input
+                    preferences.getUserInput(search_query, null, null,
+                            artsCheckBox, businessCheckBox, entrepreneursCheckBox,
+                            politicsCheckBox, sportsCheckBox, travelCheckBox);
+
+                    //If at least 1 checkbox is selected and user has put one search query --> enable notifications
+                    if(preferences.checkConditions()) {
+                        saveNotificationUrlAndState();
+                        enableNotification();
+                    } else {
+                        preferences.clearInput();
+                        Toast.makeText(getApplicationContext(), "Please select at least a categorie and a keyword", Toast.LENGTH_SHORT).show();
+                        switchNotify.toggle();
+                    }
+                }
+                //If switch is unchecked
+                else {
+                    cancelNotification();
+                }
+            }
+        });
     }
 
     /**
@@ -104,5 +137,25 @@ public class NotificationActivity extends AppCompatActivity {
         //Save search url
         preferences.createSearchUrlForAPIRequest();
         preferences.saveUrl(PREF_KEY_NOTIFICATION_URL);
+    }
+
+    /**
+     * Use work manager to run a notification
+     */
+    private void enableNotification(){
+
+    }
+
+    /**
+     * Cancel notification switch
+     */
+    private void cancelNotification(){
+        preferences.clearInput();
+        preferences.putBoolean(PREF_KEY_SWITCH, false);
+
+        //Worker.cancel
+
+        Toast.makeText(NotificationActivity.this, "Notifaction disabled", Toast.LENGTH_SHORT).show();
+
     }
 }
