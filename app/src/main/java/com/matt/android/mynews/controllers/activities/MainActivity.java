@@ -55,18 +55,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search_button_main_activity:
-                this.launchSearchActivity();
+            case R.id.search_button:
+                this.launchRelatedActivity(SearchActivity.class);
                 return true;
-            case R.id.notifications_button:
-                Toast.makeText(this, "This will launch notification feature", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.about_button:
+           case R.id.settings_button:
+                this.launchRelatedActivity(NotificationActivity.class);
+               return true;
+          /*  case R.id.about_button:
                 Toast.makeText(this, "This will launch about feature", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.help_button:
                 Toast.makeText(this, "This will launch help feature", Toast.LENGTH_SHORT).show();
-                return true;
+                return true; */
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.main_activity_menu_search:
-                this.launchSearchActivity();
+                this.launchRelatedActivity(SearchActivity.class);
                 break;
             case R.id.main_activity_menu_notifications:
                 Toast.makeText(this, "Params notifications", Toast.LENGTH_SHORT).show();
@@ -174,8 +174,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureNavigationView();
     }
 
-    private void launchSearchActivity(){
-        Intent searchIntent = new Intent(this, SearchActivity.class);
-        startActivity(searchIntent);
+    private void launchRelatedActivity(Class activity){
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
     }
 }
