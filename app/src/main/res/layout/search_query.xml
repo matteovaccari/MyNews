@@ -7,7 +7,7 @@
     android:paddingTop="10dp">
 
     <EditText
-        android:id="@+id/search_fragment_search_query"
+        android:id="@+id/search_query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

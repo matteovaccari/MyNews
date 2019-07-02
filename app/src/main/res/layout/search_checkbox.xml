@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/search_fragment_arts_check_box"
+                android:id="@+id/arts_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -29,7 +29,7 @@
                 android:textSize="15sp" />
 
             <CheckBox
-                android:id="@+id/search_fragment_business_check_box"
+                android:id="@+id/business_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -37,7 +37,7 @@
                 android:textSize="15sp" />
 
             <CheckBox
-                android:id="@+id/search_fragment_entrepreneurs_check_box"
+                android:id="@+id/entrepreneurs_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -54,7 +54,7 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/search_fragment_politics_check_box"
+                android:id="@+id/politics_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -62,7 +62,7 @@
                 android:textSize="15sp" />
 
             <CheckBox
-                android:id="@+id/search_fragment_sports_check_box"
+                android:id="@+id/sports_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -70,7 +70,7 @@
                 android:textSize="15sp" />
 
             <CheckBox
-                android:id="@+id/search_fragment_travel_check_box"
+                android:id="@+id/travel_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

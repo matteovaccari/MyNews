@@ -42,23 +42,23 @@ public class SearchFragment extends Fragment {
     @BindView(R.id.search_fragment_end_date)
     TextView endDate;
     //Hint edit text
-    @BindView(R.id.search_fragment_search_query)
+    @BindView(R.id.search_query)
     EditText search_query;
     //Search Button
     @BindView(R.id.search_fragment_button_search)
     Button searchButton;
     //CheckBox
-    @BindView(R.id.search_fragment_arts_check_box)
+    @BindView(R.id.arts_check_box)
     CheckBox artsCheckBox;
-    @BindView(R.id.search_fragment_business_check_box)
+    @BindView(R.id.business_check_box)
     CheckBox businessCheckBox;
-    @BindView(R.id.search_fragment_entrepreneurs_check_box)
+    @BindView(R.id.entrepreneurs_check_box)
     CheckBox entrepreneursCheckBox;
-    @BindView(R.id.search_fragment_politics_check_box)
+    @BindView(R.id.politics_check_box)
     CheckBox politicsCheckBox;
-    @BindView(R.id.search_fragment_sports_check_box)
+    @BindView(R.id.sports_check_box)
     CheckBox sportsCheckBox;
-    @BindView(R.id.search_fragment_travel_check_box)
+    @BindView(R.id.travel_check_box)
     CheckBox travelCheckBox;
 
     protected SharedPreferencesManager preferences;
