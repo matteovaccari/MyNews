@@ -36,7 +36,7 @@ public class NotificationActivity extends AppCompatActivity {
     @BindView(R.id.search_query)
     EditText search_query;
     @BindView(R.id.switch_notification)
-    Switch switchNotify;
+    Switch switchNotification;
     @BindView(R.id.travel_check_box)
     CheckBox travelCheckBox;
     @BindView(R.id.sports_check_box)
@@ -54,8 +54,8 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        preferences = new SharedPreferencesManager(this);
-        this.configureToolBar();
+
+        this.configureDisplayAndPrefs();
     }
 
     /**
@@ -79,7 +79,21 @@ public class NotificationActivity extends AppCompatActivity {
      */
     private void isSwitchChecked(){
 
+        boolean switchIsChecked = preferences.getBoolean(PREF_KEY_SWITCH);
+        if (switchIsChecked) {
+            //Set switch to checked
+            switchNotification.setChecked(true);
+            //Set search query
+            search_query.setText(preferences.getString(PREF_KEY_QUERY));
+            //Check the checkboxes that were selected
+            artsCheckBox.setChecked(preferences.getBoolean(PREF_KEY_ARTS));
+            politicsCheckBox.setChecked(preferences.getBoolean(PREF_KEY_POLITICS));
+            entrepreneursCheckBox.setChecked(preferences.getBoolean(PREF_KEY_ENTREPRENEURS));
+            sportsCheckBox.setChecked(preferences.getBoolean(PREF_KEY_SPORTS));
+            travelCheckBox.setChecked(preferences.getBoolean(PREF_KEY_TRAVEL));
+            businessCheckBox.setChecked(preferences.getBoolean(PREF_KEY_BUSINESS));
 
+        }
     }
 
     /**
@@ -91,7 +105,7 @@ public class NotificationActivity extends AppCompatActivity {
         Objects.requireNonNull(this.getWindow()).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         //Set Listener to switch
-        switchNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -107,7 +121,7 @@ public class NotificationActivity extends AppCompatActivity {
                     } else {
                         preferences.clearInput();
                         Toast.makeText(getApplicationContext(), "Please select at least a categorie and a keyword", Toast.LENGTH_SHORT).show();
-                        switchNotify.toggle();
+                        switchNotification.toggle();
                     }
                 }
                 //If switch is unchecked
@@ -157,5 +171,12 @@ public class NotificationActivity extends AppCompatActivity {
 
         Toast.makeText(NotificationActivity.this, "Notifaction disabled", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void configureDisplayAndPrefs() {
+        this.configureToolBar();
+        preferences = new SharedPreferencesManager(this);
+        this.isSwitchChecked();
+        this.initNotification();
     }
 }
