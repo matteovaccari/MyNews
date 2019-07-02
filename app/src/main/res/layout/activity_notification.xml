@@ -28,5 +28,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/enable_notifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:alpha=".9"
+                android:text="@string/enable_notifications"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/switch_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
