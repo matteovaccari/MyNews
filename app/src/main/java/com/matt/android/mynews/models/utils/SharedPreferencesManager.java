@@ -27,7 +27,7 @@ public class SharedPreferencesManager {
     private Context context;
 
     //Constructor
-    public SharedPreferencesManager (Context context) {
+    public SharedPreferencesManager(Context context) {
         preferences = context.getSharedPreferences(PREF_KEY_NAME, Context.MODE_PRIVATE);
         this.context = context;
     }
@@ -36,15 +36,15 @@ public class SharedPreferencesManager {
      * Method who pick up what user typed/selected and put it into related variables
      * who will be used for Search API request
      *
-     * @param search_query Search hint EditText
-     * @param search_begin_date Begin Date TextView
-     * @param search_end_date End Date TextView
-     * @param artsCheckBox Arts checkbox
-     * @param businessCheckBox Business checkbox
+     * @param search_query          Search hint EditText
+     * @param search_begin_date     Begin Date TextView
+     * @param search_end_date       End Date TextView
+     * @param artsCheckBox          Arts checkbox
+     * @param businessCheckBox      Business checkbox
      * @param entrepreneursCheckBox Entrepreneurs checkbox
-     * @param politicsCheckBox Politics checkbox
-     * @param sportsCheckBox Sports checkbox
-     * @param travelCheckBox Travel checkbox
+     * @param politicsCheckBox      Politics checkbox
+     * @param sportsCheckBox        Sports checkbox
+     * @param travelCheckBox        Travel checkbox
      */
     public void getUserInput(EditText search_query, String search_begin_date, String search_end_date,
                              CheckBox artsCheckBox, CheckBox businessCheckBox, CheckBox entrepreneursCheckBox,
@@ -54,7 +54,7 @@ public class SharedPreferencesManager {
         query = search_query.getText().toString();
 
         //Check if date interval isn't null and put dates into related string vars
-        if(search_begin_date != null && search_end_date != null) {
+        if (search_begin_date != null && search_end_date != null) {
             beginDate = search_begin_date;
             beginDate = beginDate.replace("/", "");
             endDate = search_end_date;
@@ -70,7 +70,7 @@ public class SharedPreferencesManager {
         checkBoxList.add(travelCheckBox);
         checkBoxList.add(entrepreneursCheckBox);
         for (CheckBox box : checkBoxList) {
-            if(box.isChecked()) {
+            if (box.isChecked()) {
                 checkboxQuery += "\"" + box.getText() + "\"" + "%20";
             }
         }
@@ -80,18 +80,18 @@ public class SharedPreferencesManager {
      * Method who link together every search info (what user typed + checkbox + date interval)
      * into a unique url (String) who will be used for API request
      */
-    public void createSearchUrlForAPIRequest(){
+    public void createSearchUrlForAPIRequest() {
 
         //Add default url
         url = "http://api.nytimes.com/svc/search/v2/articlesearch.json?&" +
-                 "api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm&fq=news_desk:("
+                "api-key=BCdKtxQWdZXLs9x3O9S4CY1cAJUgTCmm&fq=news_desk:("
 
                 //Add checkbox filters
                 + checkboxQuery
 
                 //Add what user typed
-                +")&q=";
-        if(!query.isEmpty()) {
+                + ")&q=";
+        if (!query.isEmpty()) {
             url += query;
         }
 
@@ -99,7 +99,7 @@ public class SharedPreferencesManager {
         if (!beginDate.isEmpty()) {
             url += "&begin_date=" + beginDate;
         }
-        if(!endDate.isEmpty()) {
+        if (!endDate.isEmpty()) {
             url += "&end_date=" + endDate;
         }
         //Sort results by newest
@@ -111,7 +111,7 @@ public class SharedPreferencesManager {
      *
      * @param key the key you want to associate the url
      */
-    public void saveUrl(String key){
+    public void saveUrl(String key) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, url);
         editor.apply();
@@ -119,7 +119,7 @@ public class SharedPreferencesManager {
         Logger.e("url = " + url);
     }
 
-    public String getUrl(){
+    public String getUrl() {
         return url;
     }
 
@@ -143,8 +143,19 @@ public class SharedPreferencesManager {
         return (!checkboxQuery.isEmpty() && !query.isEmpty());
     }
 
+    public void putString(String key, String value){
+        preferences.edit().putString(key, value).apply();
+    }
+
     public String getString(String key) {
         return preferences.getString(key, null);
     }
 
+    public void putBoolean(String key, Boolean value) {
+        preferences.edit().putBoolean(key, value).apply();
+    }
+
+    public Boolean getBoolean(String key) {
+        return preferences.getBoolean(key, false);
+    }
 }
