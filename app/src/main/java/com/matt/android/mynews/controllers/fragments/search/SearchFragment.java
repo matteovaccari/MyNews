@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -94,6 +94,10 @@ public class SearchFragment extends Fragment {
 
     private void getUrlForSearchQuery(){
         preferences = new SharedPreferencesManager(this.getActivity().getApplicationContext());
+
+        //Open the keyboard automatically
+        search_query.setSelection(0);
+        Objects.requireNonNull(this.getActivity().getWindow()).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
