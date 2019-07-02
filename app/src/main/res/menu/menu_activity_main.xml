@@ -1,24 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
     <item
-        android:id="@+id/search_button_main_activity"
+        android:id="@+id/search_button"
+        android:title="@string/search_button_text"
         android:icon="@drawable/search_button"
-        android:title="@string/search_button"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom|withText"/>
     <item
-        android:id="@+id/notifications_button"
-        android:title="@string/notifications_button"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/help_button"
-        android:title="@string/help_button"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/about_button"
-        android:title="@string/about_button"
-        app:showAsAction="never" />
-
+        android:id="@+id/settings_button"
+        android:icon="@drawable/settings_button"
+        android:title="@string/settings_button"
+        app:showAsAction="ifRoom">
+       <!-- <menu>
+            <item android:id="@+id/notification_button"
+                android:title="@string/notifications_button"
+                android:orderInCategory="102"
+                app:showAsAction="never"/>
+            <item android:id="@+id/help_button"
+                android:title="@string/help_button"
+                android:orderInCategory="103"
+                app:showAsAction="never"/>
+            <item android:id="@+id/about_button"
+                android:title="@string/about_button"
+                android:orderInCategory="107"
+                app:showAsAction="never"/>
+        </menu> -->
+    </item>
 </menu>
-
