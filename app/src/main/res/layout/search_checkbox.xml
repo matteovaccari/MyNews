@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/check_box_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+
+        android:padding="20dp">
+
+        <!-- 3 Left checkBoxes -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/search_fragment_arts_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/arts"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_business_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/business"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_entrepreneurs_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/entrepreneurs"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <!-- 3 right CheckBoxes -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/search_fragment_politics_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/politics"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_sports_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/sports"
+                android:textSize="15sp" />
+
+            <CheckBox
+                android:id="@+id/search_fragment_travel_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/travel"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

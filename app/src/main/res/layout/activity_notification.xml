@@ -12,10 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- Search hint -->
-    <include
-        layout="@layout/search_query"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <!-- Search hint -->
+        <include
+            layout="@layout/search_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <include
+            layout="@layout/search_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 </LinearLayout>
