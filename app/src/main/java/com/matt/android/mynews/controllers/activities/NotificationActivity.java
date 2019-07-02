@@ -4,12 +4,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.models.utils.SharedPreferencesManager;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -74,6 +77,12 @@ public class NotificationActivity extends AppCompatActivity {
     private void isSwitchChecked(){
 
 
+    }
+
+    private void initNotification() {
+        //Open the keyboard automatically
+        search_query.setSelection(0);
+        Objects.requireNonNull(this.getWindow()).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
     /**
