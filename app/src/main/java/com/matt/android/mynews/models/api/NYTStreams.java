@@ -1,8 +1,6 @@
 package com.matt.android.mynews.models.api;
 
 
-import com.matt.android.mynews.models.api.search.NewsObject;
-
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;

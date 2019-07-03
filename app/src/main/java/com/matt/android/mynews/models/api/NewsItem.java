@@ -1,4 +1,4 @@
-package com.matt.android.mynews.models.api.search;
+package com.matt.android.mynews.models.api;
 
 //These are the data we want to show in our recycler view
 public interface NewsItem {

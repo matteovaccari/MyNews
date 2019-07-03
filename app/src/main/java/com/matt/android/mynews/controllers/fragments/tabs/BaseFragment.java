@@ -16,18 +16,16 @@ import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.articles.ArticleAdapter;
 import com.matt.android.mynews.controllers.activities.WebViewActivity;
 import com.matt.android.mynews.models.api.NYTStreams;
-import com.matt.android.mynews.models.api.search.NewsItem;
-import com.matt.android.mynews.models.api.search.NewsObject;
+import com.matt.android.mynews.models.api.NewsItem;
+import com.matt.android.mynews.models.api.NewsObject;
 import com.matt.android.mynews.models.utils.ItemClickSupport;
 import com.matt.android.mynews.models.utils.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.matt.android.mynews.R;
-import com.matt.android.mynews.models.api.search.NewsItem;
+import com.matt.android.mynews.models.api.NewsItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

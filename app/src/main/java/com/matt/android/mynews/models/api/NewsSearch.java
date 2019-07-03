@@ -1,4 +1,4 @@
-package com.matt.android.mynews.models.api.search;
+package com.matt.android.mynews.models.api;
 
 
 import com.google.gson.annotations.Expose;

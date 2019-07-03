@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.adapters.RecyclerViewHolder;
-import com.matt.android.mynews.models.api.search.NewsItem;
+import com.matt.android.mynews.models.api.NewsItem;
 
 import java.util.List;
 
