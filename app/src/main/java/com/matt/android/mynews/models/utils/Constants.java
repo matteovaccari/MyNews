@@ -20,6 +20,6 @@ public class Constants {
     public static final String PREF_KEY_TRAVEL = "PREF_KEY_TRAVEL";
     public static final String PREF_KEY_NOTIFICATION_URL = "PREF_KEY_NOTIFICATION_URL";
     public static final String TAG_WORKER = "PREF_KEY_WORKER";
-
+    public static final String ID_WORKER_NOTIFICATION = "worker_id";
 
 }
