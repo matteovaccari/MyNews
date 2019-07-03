@@ -5,14 +5,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 
-import androidx.work.Data;
 import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.Worker;
@@ -21,8 +17,7 @@ import androidx.work.WorkerParameters;
 import com.matt.android.mynews.R;
 import com.matt.android.mynews.controllers.activities.MainActivity;
 import com.matt.android.mynews.models.api.NYTStreams;
-import com.matt.android.mynews.models.api.search.NewsObject;
-import com.matt.android.mynews.models.utils.Constants;
+import com.matt.android.mynews.models.api.NewsObject;
 import com.matt.android.mynews.models.utils.Logger;
 import com.matt.android.mynews.models.utils.SharedPreferencesManager;
 
@@ -33,7 +28,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 import static com.matt.android.mynews.models.utils.Constants.ID_WORKER_NOTIFICATION;
-import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_NAME;
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_NOTIFICATION_URL;
 import static com.matt.android.mynews.models.utils.Constants.TAG_WORKER;
 
@@ -91,7 +85,7 @@ public class NotificationWorker extends Worker {
     }
 
     public static void scheduleReminder(String tag) {
-        PeriodicWorkRequest.Builder notificationWork = new PeriodicWorkRequest.Builder(NotificationWorker.class, 1, TimeUnit.DAYS);
+        PeriodicWorkRequest.Builder notificationWork = new PeriodicWorkRequest.Builder(NotificationWorker.class, 16, TimeUnit.MINUTES);
         PeriodicWorkRequest request = notificationWork.build();
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(tag, ExistingPeriodicWorkPolicy.KEEP , request);
