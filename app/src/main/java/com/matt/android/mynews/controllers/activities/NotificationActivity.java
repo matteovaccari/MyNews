@@ -34,6 +34,7 @@ import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_QUERY;
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_SPORTS;
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_SWITCH;
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_TRAVEL;
+import static com.matt.android.mynews.models.utils.Constants.TAG_WORKER;
 
 public class NotificationActivity extends AppCompatActivity {
 
@@ -170,10 +171,9 @@ public class NotificationActivity extends AppCompatActivity {
         preferences.clearInput();
         preferences.putBoolean(PREF_KEY_SWITCH, false);
 
-        //Worker.cancel
+        NotificationWorker.cancelReminder(TAG_WORKER);
 
         Toast.makeText(NotificationActivity.this, "Notification disabled", Toast.LENGTH_SHORT).show();
-
     }
 
     private void configureDisplayAndPrefs() {
