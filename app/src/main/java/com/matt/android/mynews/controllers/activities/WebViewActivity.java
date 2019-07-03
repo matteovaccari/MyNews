@@ -3,6 +3,7 @@ package com.matt.android.mynews.controllers.activities;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -47,13 +48,12 @@ public class WebViewActivity extends AppCompatActivity {
      * Configure toolbar + add back button
      */
     private void configureToolbar(){
-        //Get the toolbar view inside the activity layout
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
-        // Set the Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
-        // Enable the up button
-        assert ab != null;
-        Objects.requireNonNull(ab).setDisplayHomeAsUpEnabled(true);
+
+        //This is for back button
+        if (toolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

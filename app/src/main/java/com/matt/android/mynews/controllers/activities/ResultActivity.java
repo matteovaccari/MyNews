@@ -25,12 +25,9 @@ public class ResultActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
 
-        //This is for back button
-        //Get a support Action bar corresponding to above toolbar
-        ActionBar actionBar = getSupportActionBar();
-        //Enable the up button
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+       //This is for back button
+        if (toolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 }
