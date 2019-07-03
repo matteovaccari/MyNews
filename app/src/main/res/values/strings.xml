@@ -54,5 +54,6 @@
 
     <!-- Notification activity -->
     <string name="enable_notifications">Enable notifications (once per day)</string>
+    <string name="notification_title">My News</string>
 </resources>
 
