@@ -72,11 +72,8 @@ public class NotificationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //This is for back button
-        //Get a support Action bar corresponding to above toolbar
-        ActionBar actionBar = getSupportActionBar();
-        //Enable the up button
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        if (toolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
