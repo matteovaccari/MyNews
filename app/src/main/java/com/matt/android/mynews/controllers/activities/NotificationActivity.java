@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -12,12 +13,17 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.work.Data;
+
 import com.matt.android.mynews.R;
+import com.matt.android.mynews.models.utils.Constants;
 import com.matt.android.mynews.models.utils.SharedPreferencesManager;
+import com.matt.android.mynews.models.worker.NotificationWorker;
 
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_ARTS;
 import static com.matt.android.mynews.models.utils.Constants.PREF_KEY_BUSINESS;
@@ -54,7 +60,7 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-
+        ButterKnife.bind(this);
         this.configureDisplayAndPrefs();
     }
 
@@ -120,7 +126,7 @@ public class NotificationActivity extends AppCompatActivity {
                         enableNotification();
                     } else {
                         preferences.clearInput();
-                        Toast.makeText(getApplicationContext(), "Please select at least a categorie and a keyword", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please select at least a theme and a keyword", Toast.LENGTH_SHORT).show();
                         switchNotification.toggle();
                     }
                 }
@@ -157,7 +163,7 @@ public class NotificationActivity extends AppCompatActivity {
      * Use work manager to run a notification
      */
     private void enableNotification(){
-
+        NotificationWorker.scheduleReminder(Constants.TAG_WORKER);
     }
 
     /**
@@ -169,7 +175,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         //Worker.cancel
 
-        Toast.makeText(NotificationActivity.this, "Notifaction disabled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(NotificationActivity.this, "Notification disabled", Toast.LENGTH_SHORT).show();
 
     }
 
