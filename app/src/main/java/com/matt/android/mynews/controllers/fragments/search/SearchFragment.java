@@ -144,8 +144,10 @@ public class SearchFragment extends Fragment {
                 beginDateText ="" + year + month + dayOfMonth;
 
                 //Set date display different from what will be used in API request
-                if (month < 10 && dayOfMonth > 10) {
+                if (month < 10) {
                     beginDateText = year + "0" + month + dayOfMonth;
+                }
+                if (month < 10 && dayOfMonth > 10) {
                     beginDateDisplay = year + "/0" + month + "/" + dayOfMonth;
                 } else if (month < 10 && dayOfMonth < 10) {
                     beginDateDisplay = year + "/0" + month + "/0" + dayOfMonth;
@@ -178,8 +180,10 @@ public class SearchFragment extends Fragment {
                 endDateText = "" +year + month + dayOfMonth;
 
                 //Set date display different from what will be used in API request
-                if (month < 10 && dayOfMonth > 10) {
+                if (month < 10) {
                     endDateText = year + "0" + month + dayOfMonth;
+                }
+                if (month < 10 && dayOfMonth > 10) {
                     endDateDisplay = year + "/0" + month + "/" + dayOfMonth;
                 } else if (month < 10 && dayOfMonth < 10) {
                     endDateDisplay = year + "/0" + month + "/0" + dayOfMonth;
