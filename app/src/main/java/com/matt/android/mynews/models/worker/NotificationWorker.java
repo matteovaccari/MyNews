@@ -48,7 +48,10 @@ public class NotificationWorker extends Worker {
 
         int id = (int) getInputData().getLong(ID_WORKER_NOTIFICATION, 0);
 
-        sendNotification("test notif", id);
+        //Do request
+        doNotificationApiRequest();
+        //Send related message
+        sendNotification(message, id);
 
         return Result.success();
     }
@@ -65,20 +68,21 @@ public class NotificationWorker extends Worker {
             @Override
             public void onNext(NewsObject news) {
                 hits = news.checkIfResult();
-               // sendNotification(hits);
+                makeCorrectNotificationMessage(hits);
+                Logger.i(hits + "");
             }
 
             @Override
             public void onError(Throwable e) {
                 //Create notification with error message
                 hits = -1;
-               // sendNotification(hits);
+                makeCorrectNotificationMessage(hits);
                 Logger.e(e.getMessage());
             }
 
             @Override
             public void onComplete() {
-                Logger.i("notification api request completed");
+                Logger.i("notification api request completed" + hits);
             }
         });
 
@@ -95,6 +99,15 @@ public class NotificationWorker extends Worker {
     public static void cancelReminder(String tag) {
         WorkManager instance = WorkManager.getInstance();
         instance.cancelAllWorkByTag(tag);
+    }
+
+    private void makeCorrectNotificationMessage(int hits){
+      if (hits == -1) {
+          message = "Error";
+      } else {
+          message = "There is some new article(s) that might interest you";
+      }
+
     }
 
     private void sendNotification(String text, int id) {
