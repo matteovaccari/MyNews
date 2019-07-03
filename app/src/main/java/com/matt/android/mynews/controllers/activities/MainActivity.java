@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 this.launchRelatedActivity(SearchActivity.class);
                 break;
             case R.id.main_activity_menu_notifications:
-                Toast.makeText(this, "Params notifications", Toast.LENGTH_SHORT).show();
+                this.launchRelatedActivity(NotificationActivity.class);
                 break;
             default:
                 break;
