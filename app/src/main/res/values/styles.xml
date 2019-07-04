@@ -26,5 +26,11 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
+    <!-- CHECKBOXES THEME -->
+    <style name="checkBoxesStyle" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/checkboxes_color</item>
+        <item name="android:textColorSecondary">@color/colorSection</item>
+    </style>
+
 
 </resources>

@@ -25,24 +25,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:theme="@style/checkBoxesStyle"
                 android:text="@string/arts"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/colorSection"/>
 
             <CheckBox
                 android:id="@+id/business_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:theme="@style/checkBoxesStyle"
                 android:text="@string/business"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/colorSection"/>
 
             <CheckBox
                 android:id="@+id/entrepreneurs_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:theme="@style/checkBoxesStyle"
                 android:text="@string/entrepreneurs"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/colorSection"/>
 
         </LinearLayout>
 
@@ -58,24 +64,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:theme="@style/checkBoxesStyle"
                 android:text="@string/politics"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/colorSection"/>
 
             <CheckBox
                 android:id="@+id/sports_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:theme="@style/checkBoxesStyle"
                 android:text="@string/sports"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/colorSection"/>
 
             <CheckBox
                 android:id="@+id/travel_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:theme="@style/checkBoxesStyle"
                 android:text="@string/travel"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/colorSection"/>
 
         </LinearLayout>
     </LinearLayout>

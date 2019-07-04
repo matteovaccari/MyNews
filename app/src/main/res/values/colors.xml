@@ -6,4 +6,5 @@
     <color name="colorTitle">#FFFF</color>
     <color name="colorSection">#000</color>
     <color name="textColorTabLayout">#8bf6ff</color>
+    <color name="checkboxes_color">#00d2ff</color>
 </resources>
