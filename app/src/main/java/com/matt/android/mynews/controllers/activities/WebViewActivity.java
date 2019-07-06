@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -55,5 +56,19 @@ public class WebViewActivity extends AppCompatActivity {
         if (toolbar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    /**
+     * Method called to finish current Activity lifecycle and go back to previous activity
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

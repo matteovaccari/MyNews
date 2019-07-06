@@ -82,7 +82,7 @@ public class NotificationWorker extends Worker {
 
             @Override
             public void onComplete() {
-                Logger.i("notification api request completed" + hits);
+                Logger.i("notification api request completed, hits :" + hits);
             }
         });
 

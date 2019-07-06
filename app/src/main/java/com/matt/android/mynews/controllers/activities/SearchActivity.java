@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.matt.android.mynews.R;
 
@@ -29,5 +30,19 @@ public class SearchActivity extends AppCompatActivity {
         if (toolbar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    /**
+     * Method called to finish current Activity lifecycle and go back to previous activity
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

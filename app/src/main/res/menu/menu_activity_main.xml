@@ -12,7 +12,7 @@
         android:icon="@drawable/settings_button"
         android:title="@string/settings_button"
         app:showAsAction="ifRoom">
-       <!-- <menu>
+      <!--  <menu>
             <item android:id="@+id/notification_button"
                 android:title="@string/notifications_button"
                 android:orderInCategory="102"

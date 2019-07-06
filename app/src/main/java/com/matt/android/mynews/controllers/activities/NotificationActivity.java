@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -174,6 +175,20 @@ public class NotificationActivity extends AppCompatActivity {
         NotificationWorker.cancelReminder(TAG_WORKER);
 
         Toast.makeText(NotificationActivity.this, "Notification disabled", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Method called to finish current Activity lifecycle and go back to previous activity
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void configureDisplayAndPrefs() {
